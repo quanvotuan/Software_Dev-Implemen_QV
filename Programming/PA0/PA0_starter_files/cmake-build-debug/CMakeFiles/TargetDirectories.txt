@@ -1,0 +1,3 @@
+C:/Quan Vo/ECE 312/Programming/PA0/PA0_starter_files/cmake-build-debug/CMakeFiles/PA0_starter_files.dir
+C:/Quan Vo/ECE 312/Programming/PA0/PA0_starter_files/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/Quan Vo/ECE 312/Programming/PA0/PA0_starter_files/cmake-build-debug/CMakeFiles/rebuild_cache.dir

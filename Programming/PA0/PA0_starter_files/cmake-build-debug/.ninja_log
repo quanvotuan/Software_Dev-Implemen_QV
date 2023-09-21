@@ -1,0 +1,5 @@
+# ninja log v5
+4	93	7151561032097082	CMakeFiles/PA0_starter_files.dir/pa0_test.c.obj	3c35a2544ae03237
+93	214	7151561033248474	PA0_starter_files.exe	f0a320eb21b97a7f
+0	100	7156493847581820	build.ninja	d1f6ba9699b840c5
+8	197	7151560360166938	CMakeFiles/PA0_starter_files.dir/pa0.c.obj	19f882d7a3d897d
