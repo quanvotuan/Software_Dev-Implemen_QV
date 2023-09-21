@@ -44,6 +44,7 @@ UTString* utstrdup(const char* src) {
     // malloc for char* string itself
     char *p_src = (char*) malloc(sizeof(char) * (strlen(src) + 5)); // Create a p_src -> string within struct UTString | sizeof(char) * # of characters + 5 because of the signature + NULL
     strcpy(p_src,src); // Copy the string -> p_src (NULL included)
+    p_UTString->string = p_src; // Set the string from p_src -> p_UTString
 
     CHECK(p_UTString) = SIGNATURE; // Signature
     return p_UTString; // Return the p-> UT String
@@ -55,7 +56,9 @@ UTString* utstrdup(const char* src) {
  * Only reverse everything before the \0.
  */
 UTString* utstrrev(UTString* s) {
-    return NULL;
+    strrev(s->string);
+    CHECK(s) = SIGNATURE;
+    return s;
 }
 
 /*
@@ -66,7 +69,22 @@ UTString* utstrrev(UTString* s) {
  * Update the length of s.
  * Return s with the above changes. */
 UTString* utstrcat(UTString* s, const char* suffix) {
-    return NULL;
+    char* new_string = s->string;
+    uint32_t i = s->length; // last index of s
+    char j = 0;
+
+    while(s->length < s->capacity){ // Out of capa
+        new_string[i] = suffix[j];
+        if(new_string[i] == '\0'){ // Done copy
+            break;
+        }
+        j++;
+        i++;
+        s->length++;
+    }
+    new_string[i] = '\0'; // NULL terminated my string
+    CHECK(s) = SIGNATURE;
+    return s;
 }
 
 /*
