@@ -13,6 +13,34 @@
 #include <stdio.h>
 #include "UTString.h"
 
+/* QUESTIONS:
+
+     * Why don't I see the Check Key after my String in memory?
+     * ->
+     *
+     * How to check whether dst is a valid UTString? *
+     * -> Idea: Create a pointer -> the end of src, subtract 5 byte and then traverse through it to check? -> this seems not efficient at all
+     *
+     * When is DONE?
+     * -> When src string = '\0'
+     *
+     * When does my strcpy broke?
+     * -> When adding the Signature (Solved)
+     * -> Because SIGNATURE depend on the String length, and I accidentally update the length incorrectly
+     *
+     * Check over the strrev func?
+     * -> Should I use string.h?
+     *
+     * What happened if string != a valid UTString?
+     * ->
+     *
+     * How to free correctly?
+     *
+     *
+
+
+*/
+
 /*
  * Helper macro to find the signature of a UTString
  * Treat this like a function that takes a UTString*
@@ -63,48 +91,72 @@ UTString* utstrrev(UTString* s) {
 
 /*
  * Append the string suffix to the UTString s.
- *  s must be a valid UTString.
- * Do not allocate any additional storage: only append as many characters
- *  as will actually fit in s.
+ * s must be a valid UTString.
+ * Do not allocate any additional storage: only append as many characters as will actually fit in s.
  * Update the length of s.
  * Return s with the above changes. */
 UTString* utstrcat(UTString* s, const char* suffix) {
-    char* new_string = s->string;
-    uint32_t i = s->length; // last index of s
-    char j = 0;
+    if(isOurs(s)) // Is s a valid UTString?
+    {
+        char* new_string = s->string;
+        uint32_t i = s->length; // last index of s
+        uint32_t s_length = s->length;
+        uint32_t s_capacity = s->capacity;
+        char j = 0;
 
-    while(s->length < s->capacity){ // Out of capa
-        new_string[i] = suffix[j];
-        if(new_string[i] == '\0'){ // Done copy
-            break;
+        while(s_length < s_capacity){ // Reach capacity yet?
+            new_string[i] = suffix[j];
+            if(new_string[i] == '\0'){ // Done append yet?
+                break;
+            }
+            j++;
+            i++;
+            s_length++; // Update the length of s
         }
-        j++;
-        i++;
-        s->length++;
+        new_string[i] = '\0'; // NULL terminated my string
+        CHECK(s) = SIGNATURE;
+        return s;
     }
-    new_string[i] = '\0'; // NULL terminated my string
-    CHECK(s) = SIGNATURE;
-    return s;
+    return nullptr; // s != valid UTString -> return NULL
 }
 
 /*
- * Copy src into dst.
- *  dst must be a valid UTString.
+ * (Done) Copy src into dst.
+ *  (???) dst must be a valid UTString.
  *  src is an ordinary string.
- * Do not allocate any additional storage: only copy as many characters
- *  as will actually fit in dst.
- * Update the length of dst.
- * Return dst with the above changes.
+ * Do not allocate any additional storage: only copy as many characters as will actually fit in dst.
+ * (Done) Update the length of dst.
+ * (Done) Return dst with the above changes.
  */
 UTString* utstrcpy(UTString* dst, const char* src) {
-    return NULL;
+    if(isOurs(dst)) // Is s a valid UTString?
+    {
+        char* dst_string = dst->string;
+        uint32_t dst_capacity = dst->capacity;
+        char i = 0; // index
+
+        while(i < dst_capacity){ // Reach capacity yet?
+            dst_string[i] = src[i]; // Copying char by char
+            if(src[i] == '\0'){ // Done copy yet?
+                break;
+            }
+            i++;
+        }
+
+        dst_string[i] = '\0'; // NULL terminated dst_string
+        dst->length = strlen(dst_string); // Update the length of dst
+        CHECK(dst) = SIGNATURE; // Added SIGNATURE
+        return dst; // Return dst with the above changes.
+    }
+    return nullptr; // dst != valid UTString -> return NULL
 }
 
 /*
  * Free all memory associated with the given UTString.
  */
 void utstrfree(UTString* self) {
-    
+    free(self->string);
+    free(self);
 }
 
 /*

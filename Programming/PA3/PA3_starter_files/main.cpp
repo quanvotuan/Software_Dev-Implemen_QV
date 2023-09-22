@@ -122,9 +122,10 @@ int main(void){
     UTString* ut_str2;
 
     UTString* testString = utstrdup(c_str1);
-    testString->capacity += 10;
-    //testString = utstrrev(testString);
-    testString = utstrcat(testString, "quan");
+    testString->capacity += 1;
+    // testString = utstrrev(testString);
+    // testString = utstrcat(testString, "quan");
+    testString = utstrcpy(testString, "quan_tuan_vo\0");
 
 
     printf("%s\n", testString->string);
