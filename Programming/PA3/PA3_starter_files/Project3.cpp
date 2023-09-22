@@ -13,6 +13,39 @@
 #include <stdio.h>
 #include "UTString.h"
 
+/* QUESTIONS:
+
+     * Why don't I see the Check Key after my String in memory?
+     * -> Because it added at the end of the struct
+     *
+     * How to check whether dst is a valid UTString? *
+     * -> use assert(isOurs(<string>))
+     *
+     * When is DONE?
+     * -> When src string = '\0'
+     *
+     * When does my strcpy broke?
+     * -> When adding the Signature (Solved)
+     * -> Because SIGNATURE depend on the String length, and I accidentally update the length incorrectly
+     *
+     * Check over the strrev func?
+     * -> Should I use string.h?
+     *
+     * What happened if string != a valid UTString?
+     * ->
+     *
+     * How to free correctly?
+     *
+     *
+
+ * Personal Note:
+ * UTString  p2; I need to declare it = Set UTString -> p2;
+ *
+ * // Good Practice: sizeof(<data type>)
+
+
+*/
+
 /*
  * Helper macro to find the signature of a UTString
  * Treat this like a function that takes a UTString*
@@ -57,54 +90,75 @@ UTString* utstrdup(const char* src) {
  */
 UTString* utstrrev(UTString* s) {
     strrev(s->string);
-    CHECK(s) = SIGNATURE;
+    CHECK(s) = SIGNATURE; // This might be not need
     return s;
 }
 
 /*
  * Append the string suffix to the UTString s.
- *  s must be a valid UTString.
- * Do not allocate any additional storage: only append as many characters
- *  as will actually fit in s.
+ * s must be a valid UTString.
+ * Do not allocate any additional storage: only append as many characters as will actually fit in s.
  * Update the length of s.
  * Return s with the above changes. */
 UTString* utstrcat(UTString* s, const char* suffix) {
+    assert(isOurs(s));
+
     char* new_string = s->string;
     uint32_t i = s->length; // last index of s
+    uint32_t s_length = s->length;
+    uint32_t s_capacity = s->capacity;
     char j = 0;
 
-    while(s->length < s->capacity){ // Out of capa
+    while(s_length < s_capacity){ // Reach capacity yet?
         new_string[i] = suffix[j];
-        if(new_string[i] == '\0'){ // Done copy
+        if(new_string[i] == '\0'){ // Done append yet?
             break;
         }
         j++;
         i++;
-        s->length++;
+        s_length++; // Update the length of s
     }
     new_string[i] = '\0'; // NULL terminated my string
+    s->length = strlen(new_string);
     CHECK(s) = SIGNATURE;
     return s;
 }
 
 /*
- * Copy src into dst.
- *  dst must be a valid UTString.
+ * (Done) Copy src into dst.
+ *  (???) dst must be a valid UTString.
  *  src is an ordinary string.
- * Do not allocate any additional storage: only copy as many characters
- *  as will actually fit in dst.
- * Update the length of dst.
- * Return dst with the above changes.
+ * Do not allocate any additional storage: only copy as many characters as will actually fit in dst.
+ * (Done) Update the length of dst.
+ * (Done) Return dst with the above changes.
  */
 UTString* utstrcpy(UTString* dst, const char* src) {
-    return NULL;
+    assert(isOurs(dst));
+    char* dst_string = dst->string;
+    uint32_t dst_capacity = dst->capacity;
+    char i = 0; // index
+
+    while(i < dst_capacity){ // Reach capacity yet?
+        dst_string[i] = src[i]; // Copying char by char
+        if(src[i] == '\0'){ // Done copy yet?
+            break;
+        }
+        i++;
+    }
+
+    dst_string[i] = '\0'; // NULL terminated dst_string
+    dst->length = strlen(dst_string); // Update the length of dst
+    CHECK(dst) = SIGNATURE; // Added SIGNATURE
+    return dst; // Return dst with the above changes.
 }
 
 /*
  * Free all memory associated with the given UTString.
  */
 void utstrfree(UTString* self) {
-    
+    assert(isOurs(self));
+    free(self->string);
+    free(self);
 }
 
 /*
@@ -117,14 +171,25 @@ void utstrfree(UTString* self) {
  * Return s with the above changes.
  */
 UTString* utstrrealloc(UTString* s, uint32_t new_capacity) {
-    return NULL;
+    assert(isOurs(s));
+    if(s->capacity > new_capacity){
+        return s; // If s has enough capacity already, do nothing.
+    }else{
+        // If s does not have enough capacity, then allocate enough capacity
+        s->string = (char*) realloc(s->string, new_capacity+5); // Go into s, update the size, copy everything -> store it back to s
+        s->capacity = new_capacity; // Update the capa
+    }
+    return s;
+
+// not using realloc method:
+    //    char *p_src = (char*) malloc(sizeof(char) * (new_capacity + 5));
+    //    strcpy(p_src, s->string);//
+    //    free(s->string);
+    //    s->string = p_src;
+    //    s->capacity = new_capacity;
+
+
+    // Create
+    // if my length = BIG ->
+    // Crete a really big constant
 }
-
-
-/*
- * Personal Note:
- * UTString  p2; I need to declare it = Set UTString -> p2;
- *
- * // Good Practice: sizeof(<data type>)
- *
- */
