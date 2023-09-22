@@ -104,7 +104,7 @@ void testStage4(void) {
 //     printf("Crashing with utstrcpy\n\n\n"); utstrcpy(utstr1, p);
 //     printf("crashing with utstrcat\n\n\n"); utstrcat(utstr1, p);
 //     printf("crashing with utstrfree\n\n\n"); utstrfree(utstr1);
-//     printf("crashing with utstrrealloc\n\n\n"); utstrrealloc(utstr1, 40);
+//    printf("crashing with utstrrealloc\n\n\n"); utstrrealloc(utstr1, 40);
     free(utstr1->string);
     free(utstr1);
 }
@@ -113,7 +113,7 @@ int main(void) {
     testStage1();
     testStage2();
     testStage3();
-//    testStage4();
+    testStage4();
     return 0;
 }
 int main_test(void){

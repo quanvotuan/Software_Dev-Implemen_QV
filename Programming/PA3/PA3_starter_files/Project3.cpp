@@ -35,13 +35,29 @@
      * ->
      *
      * How to free correctly?
+     * -> free(p_string); then free(UTString)
      *
-     *
+     * What does Test3 do?
+     * ->  Create
+     * if my length = BIG -> Crete a really big constant
 
  * Personal Note:
  * UTString  p2; I need to declare it = Set UTString -> p2;
+ * // Good Practice: sizeof(<data type>);
  *
- * // Good Practice: sizeof(<data type>)
+ * while(s_length < s_capacity){ // Reach capacity yet?
+        new_string[i] = suffix[j];
+        if(new_string[i] == '\0'){ // Done append yet?
+            break;
+        }
+        j++;
+        i++;
+        s_length++; // Update the length of s
+
+        for loop is technical faster, because it already the start and the end
+          since while loop required lots of computer power
+        Bug: create a new string char* = newstring -> not time_efficient;
+    }
 
 
 */
@@ -89,8 +105,25 @@ UTString* utstrdup(const char* src) {
  * Only reverse everything before the \0.
  */
 UTString* utstrrev(UTString* s) {
-    strrev(s->string);
-    CHECK(s) = SIGNATURE; // This might be not need
+    assert(isOurs(s));
+    // strrev(s->string);
+
+    // Need to continue working on this
+//    uint32_t s_length = s->length;
+//    uint32_t s_capacity = s->capacity;
+//    int first_idx = 0;
+//
+//    for (int last_idx = s_length; k < s_capacity; ++s_index) {
+//        if(suffix[suf_index] == '\0'){ // Done append yet?
+//            break;
+//        }
+//        s->string[s_index] = suffix[suf_index];
+//        suf_index++;
+//        s_length++;
+//    }
+//    s->string[s_length] = '\0'; // NULL terminated my string
+//    s->length = s_length; // Update my length of s after changed
+    CHECK(s) = SIGNATURE;
     return s;
 }
 
@@ -103,25 +136,22 @@ UTString* utstrrev(UTString* s) {
 UTString* utstrcat(UTString* s, const char* suffix) {
     assert(isOurs(s));
 
-    char* new_string = s->string;
-    uint32_t i = s->length; // last index of s
     uint32_t s_length = s->length;
     uint32_t s_capacity = s->capacity;
-    char j = 0;
+    int suf_index = 0;
 
-    while(s_length < s_capacity){ // Reach capacity yet?
-        new_string[i] = suffix[j];
-        if(new_string[i] == '\0'){ // Done append yet?
+    for (int s_index = s_length; s_index < s_capacity; ++s_index) {
+        if(suffix[suf_index] == '\0'){ // Done append yet?
             break;
         }
-        j++;
-        i++;
-        s_length++; // Update the length of s
+        s->string[s_index] = suffix[suf_index];
+        suf_index++;
+        s_length++;
     }
-    new_string[i] = '\0'; // NULL terminated my string
-    s->length = strlen(new_string);
-    CHECK(s) = SIGNATURE;
-    return s;
+        s->string[s_length] = '\0'; // NULL terminated my string
+        s->length = s_length; // Update my length of s after changed
+        CHECK(s) = SIGNATURE;
+        return s;
 }
 
 /*
@@ -187,9 +217,4 @@ UTString* utstrrealloc(UTString* s, uint32_t new_capacity) {
     //    free(s->string);
     //    s->string = p_src;
     //    s->capacity = new_capacity;
-
-
-    // Create
-    // if my length = BIG ->
-    // Crete a really big constant
 }
