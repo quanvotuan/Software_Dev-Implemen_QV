@@ -109,23 +109,23 @@ void testStage4(void) {
     free(utstr1);
 }
 
-int main1(void) {
-  //  testStage1();
-    //testStage2();
-   // testStage3();
-    //testStage4();
+int main(void) {
+    testStage1();
+    testStage2();
+    testStage3();
+    testStage4();
     return 0;
 }
-int main(void){
-    char c_str1[20] = "hello";
+int main_test(void){
+    char c_str1[20] = "quan_vo";
     UTString* ut_str1;
     UTString* ut_str2;
 
     UTString* testString = utstrdup(c_str1);
     testString->capacity += 1;
-    // testString = utstrrev(testString);
+    testString = utstrrev(testString);
     // testString = utstrcat(testString, "quan");
-    testString = utstrcpy(testString, "quan_tuan_vo\0");
+    //testString = utstrcpy(testString, "quan_tuan_vo\0");
 
 
     printf("%s\n", testString->string);
