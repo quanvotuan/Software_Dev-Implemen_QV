@@ -109,14 +109,104 @@ void testStage4(void) {
     free(utstr1);
 }
 
+void testStage5(void){ // Edge cases test
+//    UTString* emptyStr = utstrdup("");
+//    printf("Length: %d, Capacity: %d\n", emptyStr->length, emptyStr->capacity);
+//    // Expected output: Length: 0, Capacity: 0
+//    utstrfree(emptyStr);
+
+    UTString* str = utstrdup("Hello");
+    UTString* emptyStr = utstrdup("");
+    utstrcat(str, emptyStr->string);
+    printf("Result: %s\n", str->string);
+// Expected output: Result: Hello
+    utstrfree(str);
+    utstrfree(emptyStr);
+} // Passed
+
+void testStage6(void){
+//    UTString* oneCharStr = utstrdup("A");
+//    printf("Length: %d, Capacity: %d\n", oneCharStr->length, oneCharStr->capacity);
+//// Expected output: Length: 1, Capacity: 1
+//    utstrfree(oneCharStr);
+
+    UTString* str = utstrdup("Hello");
+    UTString* oneCharStr = utstrdup("X");
+    utstrcat(str, oneCharStr->string);
+    printf("Result: %s\n", str->string);
+// Expected output: Result: HelloX
+    utstrfree(str);
+    utstrfree(oneCharStr);
+}
+
+void testStage7(void){ // Testing with Maximum Allowed Capacity:
+
+//    UTString* maxCapacityStr = utstrdup("This is a long string.");
+//    maxCapacityStr = utstrrealloc(maxCapacityStr, UINT32_MAX); // Attempting to set the maximum capacity
+//    printf("Length: %d, Capacity: %d\n", maxCapacityStr->length, maxCapacityStr->capacity);
+//// Expected output: Length: 22, Capacity: UINT32_MAX
+//    utstrfree(maxCapacityStr);
+
+//    UTString* str = utstrdup("Hello");
+//    UTString* maxCapacityStr = utstrdup("X");
+//    maxCapacityStr = utstrrealloc(maxCapacityStr, UINT32_MAX);
+//    utstrcat(str, maxCapacityStr->string);
+//    printf("Result: %s\n\n", str->string);
+//// Expected output: Result: HelloX
+//    utstrfree(str);
+//    utstrfree(maxCapacityStr);
+
+}
+
+void testStage8(void){ // Testing with Null Terminator Handling:
+    UTString* str = utstrdup("Hello");
+    str->capacity += 5; // Inc capa for testing
+    char nullTerminatedStr[] = " World";
+    utstrcat(str, nullTerminatedStr);
+    printf("Result: %s\n", str->string);
+// Expected output: Result: Hello World
+    utstrfree(str);
+
+//    UTString* str = utstrdup("Hello");
+//    char nullTerminatedStr[] = " World";
+//    utstrcpy(str, nullTerminatedStr);
+//    printf("Result: %s\n", str->string);
+//// Expected output: Result:  World
+//    utstrfree(str);
+}
+
+void testStage9(void){ //Testing with Non-ASCII Characters:
+//    UTString* nonAsciiStr = utstrdup("Café");
+//    printf("Length: %d, Capacity: %d\n", nonAsciiStr->length, nonAsciiStr->capacity);
+//// Expected output: Length: 4, Capacity: 4
+//    utstrfree(nonAsciiStr);
+
+    UTString* str = utstrdup("Hello");
+    UTString* nonAsciiStr = utstrdup("á");
+    utstrcat(str, nonAsciiStr->string);
+    printf("Result: %s\n", str->string);
+// Expected output: Result: Helloá
+    utstrfree(str);
+    utstrfree(nonAsciiStr);
+
+}
+
 int main(void) {
     testStage1();
     testStage2();
     testStage3();
     testStage4();
+//    testStage5();
+//    testStage6();
+//    testStage7();
+//    testStage8();
+//    testStage9();
     return 0;
 }
-int main_test(void){
+
+
+
+int main1(void){
     char c_str1[20] = "quan_vo";
     UTString* ut_str1;
     UTString* ut_str2;
