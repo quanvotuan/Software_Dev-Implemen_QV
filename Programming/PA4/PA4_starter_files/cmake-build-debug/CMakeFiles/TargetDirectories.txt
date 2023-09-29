@@ -1,0 +1,3 @@
+C:/QV_Local/ECE 312/My_Git_Repo/ECE-312/Programming/PA4/PA4_starter_files/cmake-build-debug/CMakeFiles/PA4_starter_files.dir
+C:/QV_Local/ECE 312/My_Git_Repo/ECE-312/Programming/PA4/PA4_starter_files/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/QV_Local/ECE 312/My_Git_Repo/ECE-312/Programming/PA4/PA4_starter_files/cmake-build-debug/CMakeFiles/rebuild_cache.dir
