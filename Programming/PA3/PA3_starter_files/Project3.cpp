@@ -3,6 +3,7 @@
  * EID: qtv73
  * Fall 2023
  * Santacruz
+ * Finished on 09/23/23 @ 5:35 PM
  */
 
 #include <assert.h>
@@ -12,55 +13,6 @@
 #include <string.h>
 #include <stdio.h>
 #include "UTString.h"
-
-/* QUESTIONS:
-
-     * Why don't I see the Check Key after my String in memory?
-     * -> Because it added at the end of the struct
-     *
-     * How to check whether dst is a valid UTString? *
-     * -> use assert(isOurs(<string>))
-     *
-     * When is DONE?
-     * -> When src string = '\0'
-     *
-     * When does my strcpy broke?
-     * -> When adding the Signature (Solved)
-     * -> Because SIGNATURE depend on the String length, and I accidentally update the length incorrectly
-     *
-     * Check over the strrev func?
-     * -> Should I use string.h?
-     *
-     * What happened if string != a valid UTString?
-     * ->
-     *
-     * How to free correctly?
-     * -> free(p_string); then free(UTString)
-     *
-     * What does Test3 do?
-     * ->  Create
-     * if my length = BIG -> Crete a really big constant
-
- * Personal Note:
- * UTString  p2; I need to declare it = Set UTString -> p2;
- * // Good Practice: sizeof(<data type>);
- *
- * while(s_length < s_capacity){ // Reach capacity yet?
-        new_string[i] = suffix[j];
-        if(new_string[i] == '\0'){ // Done append yet?
-            break;
-        }
-        j++;
-        i++;
-        s_length++; // Update the length of s
-
-        for loop is technical faster, because it already the start and the end
-          since while loop required lots of computer power
-        Bug: create a new string char* = newstring -> not time_efficient;
-    }
-
-
-*/
 
 /*
  * Helper macro to find the signature of a UTString
@@ -101,28 +53,27 @@ UTString* utstrdup(const char* src) {
 
 /*
  * Reverses the string in s.
+ * Ideas: Buffer or Swap char
  * Null and check should remain in the same location.
  * Only reverse everything before the \0.
  */
 UTString* utstrrev(UTString* s) {
     assert(isOurs(s));
 
-    // Need to continue working on this
-    uint32_t s_length = s->length;
-    uint32_t s_capacity = s->capacity;
-    char letter = 0;
-    int last_idx = s_length-1;
-    for (int first_idx = 0; first_idx < s_capacity; ++first_idx) {
-        if(s->string[first_idx] == '\0'){ // Done reverse yet?
-            break;
-        }
-        letter = s->string[last_idx];
-        s->string[first_idx] = letter;
-        last_idx--;
+    // Better Algo to reverse String
+    char* f_char = s->string; // 1st char in s
+    char* l_char = s->string + (s->length - 1); // last char in s
+    char temp_char = 0; // temp
+
+    // Swapping last and first char
+    while(f_char < l_char){
+        temp_char = *f_char;
+        *f_char = *l_char;
+        *l_char = temp_char;
+
+        f_char++;
+        l_char--;
     }
-    s->string[s_length] = '\0'; // NULL terminated my string
-    s->length = s_length; // Update my length of s after changed
-    CHECK(s) = SIGNATURE;
     return s;
 }
 
@@ -132,6 +83,7 @@ UTString* utstrrev(UTString* s) {
  * Do not allocate any additional storage: only append as many characters as will actually fit in s.
  * Update the length of s.
  * Return s with the above changes. */
+
 UTString* utstrcat(UTString* s, const char* suffix) {
     assert(isOurs(s));
 
@@ -155,12 +107,13 @@ UTString* utstrcat(UTString* s, const char* suffix) {
 
 /*
  * (Done) Copy src into dst.
- *  (???) dst must be a valid UTString.
+ * (Done) dst must be a valid UTString.
  *  src is an ordinary string.
  * Do not allocate any additional storage: only copy as many characters as will actually fit in dst.
  * (Done) Update the length of dst.
  * (Done) Return dst with the above changes.
  */
+
 UTString* utstrcpy(UTString* dst, const char* src) {
     assert(isOurs(dst));
     char* dst_string = dst->string;
@@ -209,11 +162,4 @@ UTString* utstrrealloc(UTString* s, uint32_t new_capacity) {
         s->capacity = new_capacity; // Update the capa
     }
     return s;
-
-// not using realloc method:
-    //    char *p_src = (char*) malloc(sizeof(char) * (new_capacity + 5));
-    //    strcpy(p_src, s->string);//
-    //    free(s->string);
-    //    s->string = p_src;
-    //    s->capacity = new_capacity;
 }

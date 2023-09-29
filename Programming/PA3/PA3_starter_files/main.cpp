@@ -192,13 +192,13 @@ void testStage9(void){ //Testing with Non-ASCII Characters:
 }
 
 int main(void) {
-//    testStage1();
-//    testStage2();
-//    testStage3();
-//    testStage4();
+    testStage1();
+    testStage2();
+    testStage3();
+    testStage4();
 //    testStage5();
 //    testStage6();
-    testStage7();
+//    testStage7();
 //    testStage8();
 //    testStage9();
     return 0;
