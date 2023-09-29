@@ -106,23 +106,22 @@ UTString* utstrdup(const char* src) {
  */
 UTString* utstrrev(UTString* s) {
     assert(isOurs(s));
-    // strrev(s->string);
 
     // Need to continue working on this
-//    uint32_t s_length = s->length;
-//    uint32_t s_capacity = s->capacity;
-//    int first_idx = 0;
-//
-//    for (int last_idx = s_length; k < s_capacity; ++s_index) {
-//        if(suffix[suf_index] == '\0'){ // Done append yet?
-//            break;
-//        }
-//        s->string[s_index] = suffix[suf_index];
-//        suf_index++;
-//        s_length++;
-//    }
-//    s->string[s_length] = '\0'; // NULL terminated my string
-//    s->length = s_length; // Update my length of s after changed
+    uint32_t s_length = s->length;
+    uint32_t s_capacity = s->capacity;
+    char letter = 0;
+    int last_idx = s_length-1;
+    for (int first_idx = 0; first_idx < s_capacity; ++first_idx) {
+        if(s->string[first_idx] == '\0'){ // Done reverse yet?
+            break;
+        }
+        letter = s->string[last_idx];
+        s->string[first_idx] = letter;
+        last_idx--;
+    }
+    s->string[s_length] = '\0'; // NULL terminated my string
+    s->length = s_length; // Update my length of s after changed
     CHECK(s) = SIGNATURE;
     return s;
 }
