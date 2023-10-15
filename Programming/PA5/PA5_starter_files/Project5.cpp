@@ -66,32 +66,75 @@ void assignSet(Set* self, const Set* other) {
 
 /* return true if x is an element of self */
 bool isMemberSet(const Set* self, int x) {
-    for(int i = 0; i < self->len; i++){
-        if(self->elements[i] == x){
+
+    int start = 0;
+    int end = self->len - 1;
+
+    while (start <= end) {
+        int mid = (start + end) / 2;
+
+        if (self->elements[mid] == x) {
             return true;
         }
-        else{
-            return false;
+
+        if (x < self->elements[mid]) {
+            end = mid - 1;
+        } else {
+            start = mid + 1;
         }
     }
+    return false;
 }
 
 /*
  * add x as a new member to this set.
  * If x is already a member, then self should not be changed
- * Be sure to restore the design invariant property that elem  nts[] remains sorted
+ * Be sure to restore the design invariant property that elemnts[] remains sorted
  * (yes, you can assume it is sorted when the function is called, that's what an invariant is all about)
  */
 void insertSet(Set* self, int x) {
-    if (isMemberSet(self,x)){ // if x already a member -> return nothing
+    if(isMemberSet(self, x)){
         return;
     }
-    // Resize the elements array to accommodate the new element
-    self->elements = (int*) realloc(self->elements, (self->len + 1));
 
-    // Find the position to insert 'x' to maintain the sorted order
-    for(int i = 0; i < self->len && self->elements[i] < x; i++){
+    // Resize the elements arr
+    self->elements = (int*) realloc(self->elements, sizeof(int)*(self->len+1));
 
+    if(self->len == 0){
+        self->elements[0] = x;
+        self->len++;
+        return;
+    }
+
+    // if x < elem[i]
+    if(x < self->elements[0]){
+        // Shift all element > x to the right
+        for (int j = self->len-1; j >= 0; j--) { // if index j > index i -> shift the end
+            self->elements[j+1] = self->elements[j]; // shifted all element on the left by 1
+        }
+        self->elements[0] = x;
+        self->len++;
+        return;
+    }
+
+
+    // if x larger
+    if(x > self->elements[self->len-1]){
+        self->elements[self->len] = x;
+        self->len++;
+        return;
+    }
+
+    // if x in middle
+    for (int i = 0; i < self->len; i++) {
+        if(x > self->elements[i] && x < self->elements[i+1]){
+            for (int j = self->len-1; j > i; j--) { // if index j > index i -> shift the end
+                self->elements[j+1] = self->elements[j]; // shifted all element on the left by 1
+            }
+            self->elements[i+1] = x;
+            self->len++;
+            return;
+        }
     }
 }
 
@@ -100,13 +143,36 @@ void insertSet(Set* self, int x) {
  * don't forget: it is OK to try to remove an element
  * that is NOT in the set.
  * If 'x' is not in the set 'self', then
- * removeSet should do nothing (it's not an error)
+ * removeSet should do nothing (it's not an error) [DONE]
  * Otherwise, ('x' IS in the set), remove x. Be sure to update self->length
  * It is not necessary (nor recommended) to call malloc -- if removing an element means the
  * array on the heap is "too big", that's almost certainly OK, and reallocating a smaller array
  * is almost definitely NOT worth the trouble
  */
 void removeSet(Set* self, int x) {
+    // if element x doesn't existed in set or the set is empty -> return nothing
+    if(!(isMemberSet(self, x)) || isEmptySet(self)){
+        return;
+    }
+    /*
+     * 1. Linear Search for element
+     * 2. If elem found
+     *      2a. shift all element on the right of elem to left by 1
+     * 3. If not found
+     *      3a. Do nothing!
+     */
+    int i, j;
+    for (i = 0; i < self->len; i++){
+        if(self->elements[i] == x){
+            // Shifting elements to the left to remove "x"
+            for (j = i; j < self->len - 1; j++) {
+                self->elements[j] = self->elements[j+1];
+            }
+            self->len--; // Update self->length
+            return; // Element found
+        }
+    }
+    // Can't find "x"
 }
 
 /* done for you already */
@@ -131,10 +197,52 @@ void displaySet(const Set* self) {
 
 /* return true if self and other have exactly the same elements */
 bool isEqualToSet(const Set* self, const Set* other) {
+    if(self->len != other->len){
+        return false; // Diff length -> not equal
+    }
+    for (int i = 0; i < self->len; i++) {
+        if(self->elements[i] != other->elements[i]){ // Is the elem of each set the same
+            return false; // Elements are not the same
+        }
+    }
+    return true; // Set are equals
 }
 
 /* return true if every element of self is also an element of other */
+/*
+ * 1. Take 1st ele in self, traverse it through other
+ * 2. Check whether it existed within other
+ *      2a. If yes -> return true
+ *      2b. If no -> return false
+ */
 bool isSubsetOf(const Set* self, const Set* other) {
+    if(isEmptySet(self)){ // Based case 1: Empty set is always a subset
+        return true;
+    }
+    if(self->len > other->len){ // Base case 2: Len(self) > Len(other) -> Can't be a subset
+        return false;
+    }
+
+    int i = 0, j = 0;
+
+    while(i < self->len) {
+        if(j == other->len){
+            return false; // Self is NOT a subset of other
+        }
+        // if *i < *j -> inc i
+        else if(self->elements[i] < other->elements[j]){
+            i++;
+        }
+        // if *i == *j ->
+        else if(self->elements[i] == other->elements[j]){
+            i++;
+            j++;
+        }
+        else if(self->elements[i] > other->elements[j]){
+            j++;
+        }
+    }
+    return true; // Self is subset of other
 }
 
 /* done for you */
@@ -144,35 +252,107 @@ bool isEmptySet(const Set* self) {
 
 /* remove all elements from self that are not also elements of other */
 void intersectFromSet(Set* self, const Set* other) {
+    /*TODO: Implement 3 pointers
+     * 1. i pointer traverse through self
+     * 2. j traverse through other
+     * 3. k tracker pointer in self
+     */
 
+    int i = 0, j = 0, k =0;
+
+    while(i < self->len) {
+        if(j == other->len){
+            break;
+        }
+        else if(self->elements[i] < other->elements[j]){
+            i++;
+        }
+        else if(self->elements[i] == other->elements[j]){
+            self->elements[k] = self->elements[i];
+            k++;
+            i++;
+        }
+        else if(self->elements[i] > other->elements[j]){
+            j++;
+        }
+    }
+    self->len = k;
 }
 
 /* remove all elements from self that are also elements of other */
 void subtractFromSet(Set* self, const Set* other) {
+    /*TODO:
+     * 1. i pointer traverse through self
+     * 2. j traverse through other
+     * 3. k tracker pointer in self
+     */
+
+    int i = 0, j = 0, k =0;
+
+    while(i < self->len) {
+        // if j reach the end, break
+        if(j == other->len){
+            break;
+        }
+        // self->elem is not in other, keep it in the result
+        else if(self->elements[i] < other->elements[j]){
+            self->elements[k] = self->elements[i];
+            i++;
+            k++;
+        }
+        // self->elem == other->elem, skip them
+        else if(self->elements[i] == other->elements[j]){
+            i++;
+            j++;
+        }
+        // other->elem is not in self, j++
+        else if(self->elements[i] > other->elements[j]){
+            j++;
+        }
+    }
+
+    // Copy all remaining element
+    while(i < self->len){
+        self->elements[k] = self->elements[i];
+        i++;
+        k++;
+    }
+    self->len = k;
 }
 
 /* add all elements of other to self (obviously, without creating duplicate elements) */
 void unionInSet(Set* self, const Set* other) {
+    /*TODO:
+     * 1. Realloc the size of both self and other-> len combine * int
+     * 1. Looking over the self set -> make sure there
+     *      for each index of other, traverse through self -> make sure no duplicate
+     * 2. use the Logic of InsertSet -> added element into self
+     *
+     */
+
+    self->elements = (int*) realloc(self->elements, sizeof(int)*(self->len + other->len));
+
+    int i = 0, j = 0, k =0;
+
+    while (i < self->len && j < other->len) {
+        if (self->elements[i] < other->elements[j]) {
+            // Element in self is smaller, keep it and move to the next element in self
+            i++;
+        } else if (self->elements[i] == other->elements[j]) {
+            // Elements match, move to the next elements in both sets, eliminating duplicates
+            i++;
+            j++;
+        } else {
+            // Element in other is smaller, insert it into self and move to the next element in other
+            insertSet(self, other->elements[j]);
+            j++;
+        }
+    }
+
+    // Copy any remaining elements from other to self
+    while (j < other->len) {
+        insertSet(self, other->elements[j]);
+        j++;
+    }
+
 }
-
-
-//int binary_search(int arr[], int t, int size){
-//    int start = 0;
-//    int end = size-1;
-//
-//    while(start <= end){
-//        int mid  = (start + end)/2;
-//
-//        if(arr[mid] == t){
-//            return mid;
-//        }
-//
-//        if(t<arr[mid]){
-//            end = mid-1;
-//        }
-//        else{
-//            start = mid+1;
-//        }
-//    }
-//    return -1;
-//}
