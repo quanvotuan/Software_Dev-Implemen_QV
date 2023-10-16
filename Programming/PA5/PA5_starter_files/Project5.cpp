@@ -290,9 +290,12 @@ void subtractFromSet(Set* self, const Set* other) {
     int i = 0, j = 0, k =0;
 
     while(i < self->len) {
-        // if j reach the end, break
+        // if j reach the end, push it up, inc i and k
         if(j == other->len){
-            break;
+            // Push it up
+            self->elements[k] = self->elements[i];
+            i++;
+            k++;
         }
         // self->elem is not in other, keep it in the result
         else if(self->elements[i] < other->elements[j]){
@@ -310,13 +313,6 @@ void subtractFromSet(Set* self, const Set* other) {
             j++;
         }
     }
-
-    // Copy all remaining element
-    while(i < self->len){
-        self->elements[k] = self->elements[i];
-        i++;
-        k++;
-    }
     self->len = k;
 }
 
@@ -330,29 +326,47 @@ void unionInSet(Set* self, const Set* other) {
      *
      */
 
-    self->elements = (int*) realloc(self->elements, sizeof(int)*(self->len + other->len));
+    int* merge = (int*) malloc(sizeof(int)*(self->len + other->len));
 
     int i = 0, j = 0, k =0;
 
-    while (i < self->len && j < other->len) {
-        if (self->elements[i] < other->elements[j]) {
-            // Element in self is smaller, keep it and move to the next element in self
+    // Watch what if one array at the end
+
+    while(i != self->len || j != other->len){
+        // When i reach the end
+        if(i == self->len){
+            merge[k] = other->elements[j];
+            k++;
+            j++;
+        }
+        // When j reach the end
+        else if(j == other->len){
+            merge[k] = self->elements[i];
+            k++;
             i++;
-        } else if (self->elements[i] == other->elements[j]) {
-            // Elements match, move to the next elements in both sets, eliminating duplicates
+        }
+
+        // 1st case: if elem[i] == elem[j] -> move i and j++
+        else if(self->elements[i] == other->elements[j]){
+            merge[k] = self->elements[i];
+            k++;
             i++;
             j++;
-        } else {
-            // Element in other is smaller, insert it into self and move to the next element in other
-            insertSet(self, other->elements[j]);
+
+        }
+        // 2nd case: if elem[i] < elem[j] -> put elem[i] -> merge[k]
+        else if(self->elements[i] < other->elements[j]){
+            merge[k] = self->elements[i];
+            k++;
+            i++;
+        }
+        // 3rd case: if elem[i] > elem[j] -> put elem[j] -> merge[k]
+        else if(self->elements[i] > other->elements[j]) {
+            merge[k] = other->elements[j];
+            k++;
             j++;
         }
     }
-
-    // Copy any remaining elements from other to self
-    while (j < other->len) {
-        insertSet(self, other->elements[j]);
-        j++;
-    }
-
+    self->len = k;
+    self->elements = merge;
 }

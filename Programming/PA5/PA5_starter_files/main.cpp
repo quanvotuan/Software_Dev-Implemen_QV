@@ -25,7 +25,82 @@ int main (void) {
     algebraicTests();
     testTime();
     printf("The tests are over\n");
+
+    return 0;
 }
+
+
+int main_test_Intersect(void){
+    // Create two sets and initialize them
+    Set set1, set2, result;
+    createEmptySet(&set1);
+    createEmptySet(&set2);
+
+    // Populate set1 and set2 with some values (e.g., 1, 2, 3, 4)
+    insertSet(&set1, 2);
+    insertSet(&set1, 3);
+    insertSet(&set1, 1);
+    insertSet(&set1, 8);
+    insertSet(&set1, 4);
+
+    insertSet(&set2, 3);
+    insertSet(&set2, 4);
+    insertSet(&set2, 5);
+    insertSet(&set2, 6);
+
+    // Call intersectFromSet to find the intersection of set1 and set2
+    intersectFromSet(&set1, &set2);
+
+    // Display the resulting set (intersection)
+    displaySet(&set1);
+
+    // Clean up (destroy the sets)
+    destroySet(&set1);
+    destroySet(&set2);
+
+    return 0;
+}
+
+#include <stdio.h>
+#include "Set.h"
+
+int main_test_union() {
+    // Create two sets
+    Set set1, set2;
+    createEmptySet(&set1);
+    createEmptySet(&set2);
+
+    // Add elements to set1 and set2 (sorted order)
+    insertSet(&set1, 1);
+    insertSet(&set1, 3);
+    insertSet(&set1, 5);
+
+    insertSet(&set2, 2);
+    insertSet(&set2, 3);
+    insertSet(&set2, 4);
+
+    // Display the original sets
+    printf("Set 1: ");
+    displaySet(&set1);
+    printf("\nSet 2: ");
+    displaySet(&set2);
+    printf("\n");
+
+    // Calculate the union of set1 and set2
+    unionInSet(&set1, &set2);
+
+    // Display the result (updated set1)
+    printf("Union of set1 and set2: ");
+    displaySet(&set1);
+    printf("\n");
+
+    // Destroy the sets
+    destroySet(&set1);
+    destroySet(&set2);
+
+    return 0;
+}
+
 
 void randomSet(Set* s) {
     Set t;
