@@ -319,14 +319,13 @@ void subtractFromSet(Set* self, const Set* other) {
 /* add all elements of other to self (obviously, without creating duplicate elements) */
 void unionInSet(Set* self, const Set* other) {
     /*TODO:
-     * 1. Realloc the size of both self and other-> len combine * int
-     * 1. Looking over the self set -> make sure there
-     *      for each index of other, traverse through self -> make sure no duplicate
-     * 2. use the Logic of InsertSet -> added element into self
-     *
+     * 1. Realloc the size of both self and other-> len combine * int & free it at the end
+     * 2. Create a new pointer (merge) to store the result set
+     * 3. Use i,j,k to traverse through the set self & other as above functions
+     * 4. Set the self->elem to point to merge
      */
 
-    int* merge = (int*) malloc(sizeof(int)*(self->len + other->len));
+    int* merge = (int*) malloc(sizeof(int) * (self->len + other->len));
 
     int i = 0, j = 0, k =0;
 
@@ -367,6 +366,10 @@ void unionInSet(Set* self, const Set* other) {
             j++;
         }
     }
+
+    // Free the old memory
+    free(self->elements);
+
     self->len = k;
     self->elements = merge;
 }
