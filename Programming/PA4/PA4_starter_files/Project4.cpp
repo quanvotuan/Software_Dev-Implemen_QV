@@ -49,7 +49,7 @@ void processSummarize() {
      * Goal: Print out a summary.
      * (Done) 1. display the number of Books, Dice, Figures, Towers remaining in inventory at the time of the Summarize command.
      * (Done) 2. display how many different customers have come to the store for purchases.
-     * () 3. the summary should report which customer purchased the most dice (and how many dice), who purchased the most books (and how many), who purchased the most figures (and how
+     * (Done) 3. the summary should report which customer purchased the most dice (and how many dice), who purchased the most books (and how many), who purchased the most figures (and how
 many), and who purchased the most towers (and how many towers). If a certain item has not been purchased by anybody, then the summary should indicate that. You are provided with three input
 files. At the end of each file (after the Quit command) is a transcript of what the output should be
 from the Summary command. Please format your output exactly as shown in the file.
@@ -220,7 +220,6 @@ void processPurchase() {
                 // Added to database
                 customers[i].name = name;
                 num_customers++;
-                StringDestroy(&name);
             }
             else{
                 StringDestroy(&name);
@@ -240,7 +239,6 @@ void processPurchase() {
                 // Added to database
                 customers[i].name = name;
                 num_customers++;
-                StringDestroy(&name);
             }
             else{
                 StringDestroy(&name);
@@ -260,7 +258,6 @@ void processPurchase() {
                 // Added to database
                 customers[i].name = name;
                 num_customers++;
-                StringDestroy(&name);
             }
             else{
                 StringDestroy(&name);
@@ -280,7 +277,6 @@ void processPurchase() {
                 // Added to database
                 customers[i].name = name;
                 num_customers++;
-                StringDestroy(&name);
             }
             else{
                 StringDestroy(&name);
@@ -330,25 +326,3 @@ void processInventory() {
     StringDestroy(&Tower);
     StringDestroy(&item);
 }
-
-/* Personal Note:
- *
-        // I don't know the name of the Customer -> have to check my Customer data -> if not -> added into the list
-        // 1st Read = Craig; 2nd read = items
-
-        Tutors names:
-        - Gabriel
-        - Sona
-        - Nandita
-
-        // reset
-
-
-        // Process purchase:
-            // If I found the customer -> update their status
-            // If I not found the customer -> added them in the Data base, then update their status
-
-        // Error orccur:
-        - Because we haven't added the new customer in -> Can't use Customer[].name
-
- */

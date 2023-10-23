@@ -124,16 +124,16 @@ int main(void) {
   PrintIntro();
   PrintTutorial();
 
-  int intro = testIntro();
-  if (intro == 0) {
-    PrintTutorialSumSuccess();
-  } else if (intro == 1) {
-    PrintTutorialSumFailValue();
-    return 0;
-  } else {
-    PrintTutorialSumFailCount();
-    return 0;
-  }
+//  int intro = testIntro();
+//  if (intro == 0) {
+//    PrintTutorialSumSuccess();
+//  } else if (intro == 1) {
+//    PrintTutorialSumFailValue();
+//    return 0;
+//  } else {
+//    PrintTutorialSumFailCount();
+//    return 0;
+//  }
 
   PrintChapterOne();
   int reverse = testReverse();
@@ -174,4 +174,66 @@ int main(void) {
   PrintConclusion();
 
   return 0;
+}
+
+int main_test(void){
+    int x[] = {1, 2, 3, 4, 5};
+    int calls = 0;
+
+    int result = sumNums1(x, 4, &calls); // Calculate the sum of the first 5 elements (0-based index)
+
+    printf("Sum: %d\n", result);
+    printf("Number of recursive calls: %d\n", calls);
+
+    return 0;
+}
+
+int findLengthOfInteger(int num) {
+    int length = 0;
+
+    // Handle the case of a negative number
+    if (num < 0) {
+        num = abs(num); // Convert the negative number to a positive number
+        length++; // Account for the negative sign
+    }
+
+    // Handle the case of a number with value 0
+    if (num == 0) {
+        return 1; // A single digit, which is 0
+    }
+
+    while (num > 0) {
+        num /= 10;
+        length++;
+    }
+
+    return length;
+}
+
+int main_test1(void){
+
+    int x = 173216;
+    int calls = 0;
+    int x_length = findLengthOfInteger(x);
+
+    int result = reverse(x, x_length, &calls); // Calculate the sum of the first 5 elements (0-based index)
+
+    printf("The reverse int: %d", result);
+
+    return 0;
+}
+
+int main_3(void){
+    int x[] = {1, 6 ,8, 3};
+    int n = 4;
+    int max = 20;
+    int calls = 0;
+
+    int max_total_weight = knapsack(x, n, max, &calls);
+
+    printf("Maximum total weight: %d\n", max_total_weight);
+    printf("Number of recursive calls: %d\n", calls);
+
+    return 0;
+
 }
