@@ -120,125 +120,8 @@ bool testTree() {
   return test == 8;
 }
 
-int main(void) {
-  PrintIntro();
-  PrintTutorial();
 
-  int intro = testIntro();
-  if (intro == 0) {
-    PrintTutorialSumSuccess();
-  } else if (intro == 1) {
-    PrintTutorialSumFailValue();
-    return 0;
-  } else {
-    PrintTutorialSumFailCount();
-    return 0;
-  }
-
-  PrintChapterOne();
-  int reverse = testReverse();
-  if (!reverse) {
-    PrintReverseFail();
-    return 0;
-  } else {
-    PrintReverseSuccess();
-  }
-
-  PrintChapterTwo();
-  int remove = testRemove();
-  if (!remove) {
-    PrintRemoveFail();
-    return 0;
-  } else {
-    PrintRemoveSuccess();
-  }
-
-  PrintChapterThree();
-  int weight = testWeight();
-  if (!weight) {
-    PrintWeightFail();
-    return 0;
-  } else {
-    PrintWeightSuccess();
-  }
-
-  PrintChapterFour();
-  int tree = testTree();
-  if (!tree) {
-    PrintTreeFail();
-    return 0;
-  } else {
-    PrintTreeSuccess();
-  }
-
-  PrintConclusion();
-
-  return 0;
-}
-
-int main_test(void){
-    int x[] = {1, 2, 3, 4, 5};
-    int calls = 0;
-
-    int result = sumNums1(x, 4, &calls); // Calculate the sum of the first 5 elements (0-based index)
-
-    printf("Sum: %d\n", result);
-    printf("Number of recursive calls: %d\n", calls);
-
-    return 0;
-}
-
-int findLengthOfInteger(int num) {
-    int length = 0;
-
-    // Handle the case of a negative number
-    if (num < 0) {
-        num = abs(num); // Convert the negative number to a positive number
-        length++; // Account for the negative sign
-    }
-
-    // Handle the case of a number with value 0
-    if (num == 0) {
-        return 1; // A single digit, which is 0
-    }
-
-    while (num > 0) {
-        num /= 10;
-        length++;
-    }
-
-    return length;
-}
-
-int main_test1(void){
-
-    int x = 173216;
-    int calls = 0;
-    int x_length = findLengthOfInteger(x);
-
-    int result = reverse(x, x_length, &calls); // Calculate the sum of the first 5 elements (0-based index)
-
-    printf("The reverse int: %d", result);
-
-    return 0;
-}
-
-int main_3(void){
-    int x[] = {1, 6 ,8, 3};
-    int n = 4;
-    int max = 20;
-    int calls = 0;
-
-    int max_total_weight = knapsack(x, n, max, &calls);
-
-    printf("Maximum total weight: %d\n", max_total_weight);
-    printf("Number of recursive calls: %d\n", calls);
-
-    return 0;
-
-}
-
-// Main to test Tic-tac-toe Problem
+// Test Tic-tac-toe Problem
 bool RecordSame(Record a, int x, int d, int o){
     if ((a.x_wins == x)&&(a.draws==d) &&(a.o_wins==o)) {
         return true;
@@ -254,8 +137,8 @@ void DUCKINTESTTOE(){
 
     char board1[3][3]= {
             {'X','O','X'},
-            {'O',' ',' '},
-            {'O','X',' '}
+            {'O','X','O'},
+            {'O','O',' '}
     };
     outcome = tic_tac_toe(board1, true, &calls);
 
@@ -383,6 +266,121 @@ void DUCKINTESTTOE(){
     }
 }
 
-int main_TicTacToe(void){
-    DUCKINTESTTOE();
+int main(void) {
+  PrintIntro();
+  PrintTutorial();
+
+  int intro = testIntro();
+  if (intro == 0) {
+    PrintTutorialSumSuccess();
+  } else if (intro == 1) {
+    PrintTutorialSumFailValue();
+    return 0;
+  } else {
+    PrintTutorialSumFailCount();
+    return 0;
+  }
+
+  PrintChapterOne();
+  int reverse = testReverse();
+  if (!reverse) {
+    PrintReverseFail();
+    return 0;
+  } else {
+    PrintReverseSuccess();
+  }
+
+  PrintChapterTwo();
+  int remove = testRemove();
+  if (!remove) {
+    PrintRemoveFail();
+    return 0;
+  } else {
+    PrintRemoveSuccess();
+  }
+
+  PrintChapterThree();
+  int weight = testWeight();
+  if (!weight) {
+    PrintWeightFail();
+    return 0;
+  } else {
+    PrintWeightSuccess();
+  }
+
+  PrintChapterFour();
+  int tree = testTree();
+  if (!tree) {
+    PrintTreeFail();
+    return 0;
+  } else {
+    PrintTreeSuccess();
+  }
+
+  PrintConclusion();
+
+  DUCKINTESTTOE();
+  return 0;
+}
+
+int main_test(void){
+    int x[] = {1, 2, 3, 4, 5};
+    int calls = 0;
+
+    int result = sumNums1(x, 4, &calls); // Calculate the sum of the first 5 elements (0-based index)
+
+    printf("Sum: %d\n", result);
+    printf("Number of recursive calls: %d\n", calls);
+
+    return 0;
+}
+
+int findLengthOfInteger(int num) {
+    int length = 0;
+
+    // Handle the case of a negative number
+    if (num < 0) {
+        num = abs(num); // Convert the negative number to a positive number
+        length++; // Account for the negative sign
+    }
+
+    // Handle the case of a number with value 0
+    if (num == 0) {
+        return 1; // A single digit, which is 0
+    }
+
+    while (num > 0) {
+        num /= 10;
+        length++;
+    }
+
+    return length;
+}
+
+int main_test1(void){
+
+    int x = 173216;
+    int calls = 0;
+    int x_length = findLengthOfInteger(x);
+
+    int result = reverse(x, x_length, &calls); // Calculate the sum of the first 5 elements (0-based index)
+
+    printf("The reverse int: %d", result);
+
+    return 0;
+}
+
+int main_3(void){
+    int x[] = {1, 6 ,8, 3};
+    int n = 4;
+    int max = 20;
+    int calls = 0;
+
+    int max_total_weight = knapsack(x, n, max, &calls);
+
+    printf("Maximum total weight: %d\n", max_total_weight);
+    printf("Number of recursive calls: %d\n", calls);
+
+    return 0;
+
 }

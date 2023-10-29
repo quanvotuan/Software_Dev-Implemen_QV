@@ -1,3 +1,10 @@
+// Set <Project6.cpp>
+// ECE 312 Project 6 submission by
+// Name: Quan Tuan Vo
+// EID: qtv73
+// Slip days used: <0>
+// Fall 2023
+
 #include "Recursion.h"
 #include <math.h>
 #include <stdio.h>
