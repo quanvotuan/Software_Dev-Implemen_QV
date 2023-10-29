@@ -16,7 +16,7 @@ int sumNums1(int x[], int n, int *calls) {
   if(n <= 0) // base case
       return 0;
   else{
-      return(x[n] + sumNums1(x, n-1, calls)); // Recursive case
+      return(x[n-1] + sumNums1(x, n-1, calls)); // Recursive case
   }
 }
 
@@ -34,8 +34,11 @@ int sumNums2(int x[], int n, int *calls) {
   // TODO: Your code here
     if(n <= 0) // base case
         return 0;
+    if(n == 1)
+        return x[0];
     else{
-        return(sumNums1(x, n/2, calls)); // Recursive case
+        int mid = n/2;
+        return(sumNums2(x, mid, calls) + sumNums2(x+mid,n-mid, calls)); // Recursive case
     }
 }
 
@@ -159,7 +162,45 @@ int least_weight_path(BinaryNode *root, int *calls) {
 
 bool is_win(char board[3][3], char player) {
   // (Optional but recommended) TODO: Your code here
-  return false;
+
+  // Check rows
+    for (int i = 0; i < 3; i++) {
+        if(board[i][0] == player && board[i][1] == player && board[i][2] == player){
+            return true;
+        }
+    }
+  // Check columns
+    for (int i = 0; i < 3; i++) {
+        if(board[0][i] == player && board[1][i] == player && board[2][i] == player){
+            return true;
+        }
+    }
+
+  // Check diagnose
+    if(board[0][0] == player && board[1][1] == player && board[2][2] == player ||
+            board[0][2] == player && board[1][1] == player && board[2][0] == player){
+        return true;
+    }
+
+    // All else -> return false;
+    return false;
+}
+
+bool is_draw(char board[3][3]) {
+    // Support func
+    bool flag;
+    for (int i = 0; i < 3; i++) { // Traverse through rows
+        for (int j = 0; j < 3; j++) { // Traverse through columns
+            if (board[i][j] == ' ') { // Is there any empty box? -> yes = false
+                return false; // Not draw
+            }
+            if (is_win(board, 'X') || is_win(board, 'O')) { // If X or O win -> false
+                return false; // Not draw
+            }
+        }
+    }
+    flag = true; // Otherwise -> it is drawn
+    return flag;
 }
 
 /*
@@ -171,5 +212,54 @@ bool is_win(char board[3][3], char player) {
 Record tic_tac_toe(char board[3][3], bool is_x_turn, int *calls) {
   *calls += 1;
   // TODO: Your code here
-  return {0, 0, 0};
+  int X_win_move = 0;
+  int O_win_move = 0;
+  int Draw = 0;
+
+    // Draw case = base case
+    if(is_draw(board)){
+        Draw = 1;
+        return {X_win_move, Draw, O_win_move};
+    }
+    if(is_win(board, 'X')){
+        X_win_move = 1;
+        return {X_win_move, Draw, O_win_move}; // Update the record
+    }
+    if(is_win(board, 'O')){
+        O_win_move = 1; // Update the record
+        return {X_win_move, Draw, O_win_move};
+    }
+
+  if(is_x_turn){
+      for (int i = 0; i < 3; i++) { // Traverse through rows
+          for (int j = 0; j < 3; j++){ // Traverse through columns
+              if(board[i][j] == ' '){
+                  board[i][j] = 'X'; // Fill X -> blank
+                  Record current_record = tic_tac_toe(board, false, calls); // Call O to play
+
+                  // Update the record:
+                  X_win_move += current_record.x_wins; // Update the total sum of X_win
+                  O_win_move += current_record.o_wins; // Update the total sum of O_win;
+                  Draw += current_record.draws; // Update the total sum of Draw;
+                  board[i][j] = ' '; // Reset the board -> original
+              }
+          }
+      }
+  }
+
+  if(!is_x_turn){
+      for (int i = 0; i < 3; i++) { // Traverse through the rows
+          for (int j = 0; j < 3; j++){ // Traverse through the columns
+              if(board[i][j] == ' '){ // If the box is blank
+                  board[i][j] = 'O'; // Fill it with 'O'
+                      Record current_record = tic_tac_toe(board, true, calls);
+                      X_win_move += current_record.x_wins; // Update the total sum of X_win
+                      O_win_move += current_record.o_wins; // Update the total sum of O_win;
+                      Draw += current_record.draws; // update the total sum of Draw; (If draw)
+                  board[i][j] = ' '; // clear the box after
+              }
+          }
+      }
+  }
+  return {X_win_move, Draw, O_win_move};
 }

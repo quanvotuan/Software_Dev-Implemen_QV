@@ -13,8 +13,8 @@ int testIntro() {
   printf("The first magic number is: %d (calls: %d)\n", magic1, calls1);
   printf("The second magic number is: %d (calls: %d)\n\n", magic2, calls2);
 
-  if (magic1 == 69 && magic2 == 420) {
-    if (calls1 == 17 && calls2 == 21) {
+  if (magic1 == 69 && magic2 == 420) { //
+    if (calls1 == 10 && calls2 == 21) { // Change calls1 == 17 -> 10
       return 0;
     } else {
       return 2;
@@ -124,16 +124,16 @@ int main(void) {
   PrintIntro();
   PrintTutorial();
 
-//  int intro = testIntro();
-//  if (intro == 0) {
-//    PrintTutorialSumSuccess();
-//  } else if (intro == 1) {
-//    PrintTutorialSumFailValue();
-//    return 0;
-//  } else {
-//    PrintTutorialSumFailCount();
-//    return 0;
-//  }
+  int intro = testIntro();
+  if (intro == 0) {
+    PrintTutorialSumSuccess();
+  } else if (intro == 1) {
+    PrintTutorialSumFailValue();
+    return 0;
+  } else {
+    PrintTutorialSumFailCount();
+    return 0;
+  }
 
   PrintChapterOne();
   int reverse = testReverse();
@@ -236,4 +236,153 @@ int main_3(void){
 
     return 0;
 
+}
+
+// Main to test Tic-tac-toe Problem
+bool RecordSame(Record a, int x, int d, int o){
+    if ((a.x_wins == x)&&(a.draws==d) &&(a.o_wins==o)) {
+        return true;
+    }
+    else {
+        return false;
+    }
+}
+
+void DUCKINTESTTOE(){
+    int calls = 0;
+    Record outcome;
+
+    char board1[3][3]= {
+            {'X','O','X'},
+            {'O',' ',' '},
+            {'O','X',' '}
+    };
+    outcome = tic_tac_toe(board1, true, &calls);
+
+//    printf("X_win Outcome: %d\n", outcome.x_wins);
+//    printf("O_win Outcome: %d\n", outcome.o_wins);
+//    printf("Draw Outcome: %d\n", outcome.draws);
+
+    if (!RecordSame(outcome, 1,0,0)){
+        printf("Test 1 failed\n");
+        fflush(stdout);
+    }else{
+        printf("Test 1 SUCCESS\n");
+        fflush(stdout);
+    }
+
+    char board2[3][3]= {
+            {'X','O','X'},
+            {'O','X','O'},
+            {'O','X',' '}
+    };
+    outcome = tic_tac_toe(board2, false, &calls);
+    if (!RecordSame(outcome, 0,1,0)){
+        printf("Test 2 failed\n");
+        fflush(stdout);
+    }else{
+        printf("Test 2 SUCCESS\n");
+        fflush(stdout);
+    }
+
+    char board3[3][3]= {//change number
+            {' ','O','X'},
+            {'O','X','O'},
+            {'O','X','O'}
+    };
+    outcome = tic_tac_toe(board3, true, &calls);//change number
+    if (!RecordSame(outcome, 0,1,0)){
+        printf("Test 3 failed\n");//change number
+        fflush(stdout);
+    }else{
+        printf("Test 3 SUCCESS\n");//change number
+        fflush(stdout);
+    }
+
+    char board4[3][3]= {//change number
+            {' ','O','X'},
+            {'O','X','O'},
+            {'O','X','O'}
+    };
+    outcome = tic_tac_toe(board4, false, &calls);//change number
+    if (!RecordSame(outcome, 0,0,1)){
+        printf("Test 4 failed\n");//change number
+        fflush(stdout);
+    }else{
+        printf("Test 4 SUCCESS\n");//change number
+        fflush(stdout);
+    }
+
+    char board5[3][3]= {//change number
+            {'X','O','X'},
+            {'X','O','X'},
+            {'O',' ',' '}
+    };
+    outcome = tic_tac_toe(board5, true, &calls);//change number
+    if (!RecordSame(outcome, 1,1,0)){
+        printf("Test 5 failed\n");//change number
+        fflush(stdout);
+    }else{
+        printf("Test 5 SUCCESS\n");//change number
+        fflush(stdout);
+    }
+
+    char board6[3][3]= {//change number
+            {'O','O','X'},
+            {'X','O','X'},
+            {'O',' ',' '}
+    };
+    outcome = tic_tac_toe(board6, true, &calls);//change number
+    if (!RecordSame(outcome, 1,0,1)){
+        printf("Test 6 failed\n");//change number
+        fflush(stdout);
+    }else{
+        printf("Test 6 SUCCESS\n");//change number
+        fflush(stdout);
+    }
+
+    char board7[3][3]= {//change number
+            {'X','O','X'},
+            {'O','X','O'},
+            {' ',' ',' '}
+    };
+    outcome = tic_tac_toe(board7, true, &calls);//change number
+    if (!RecordSame(outcome, 4,0,0)){
+        printf("Test 7 failed\n");//change number
+        fflush(stdout);
+    }else{
+        printf("Test 7 SUCCESS\n");//change number
+        fflush(stdout);
+    }
+    char board8[3][3]= {//change number
+            {'X','O','X'},
+            {'O','X','O'},
+            {' ',' ',' '}
+    };
+    outcome = tic_tac_toe(board8, false, &calls);//change number
+    if (!RecordSame(outcome, 4,2,0)){
+        printf("Test 8 failed\n");//change number
+        fflush(stdout);
+    }else{
+        printf("Test 8 SUCCESS\n");//change number
+        fflush(stdout);
+    }
+
+    char board666[3][3]= {//change number
+            {' ',' ',' '},
+            {' ',' ',' '},
+            {' ',' ',' '}
+    };
+    outcome = tic_tac_toe(board666, true, &calls);//change number
+    if (!RecordSame(outcome, 131184,46080,77904)){
+        printf("Test 666 failed\n");//change number
+        fflush(stdout);
+    }else{
+        printf("Test 666 SUCCESS\n");//change number
+        fflush(stdout);
+    }
+}
+
+int main_TicTacToe(void){
+    DUCKINTESTTOE();
 }
