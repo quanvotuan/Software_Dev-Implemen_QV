@@ -1,0 +1,2 @@
+C:\Quan Vo\Dev\CppSeries\HelloWorld\Debug\HelloWorld.exe
+C:\Quan Vo Local\Local Dev\CppSeries\HelloWorld\Debug\HelloWorld.exe
