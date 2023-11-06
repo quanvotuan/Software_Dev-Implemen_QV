@@ -217,6 +217,7 @@ void processPurchase() {
             else if(quantity > 0){ // Selling
                 customers[i].books = quantity; // Updating the Customer's Books inventory
                 num_books -= quantity; // Updating the store inventory
+
                 // Added to database
                 customers[i].name = name;
                 num_customers++;

@@ -1,6 +1,6 @@
 /*
- * Name: 
- * EID: 
+ * Name: Quan Tuan Vo
+ * EID: qtv73
  * PA7
  * Santacruz, Fall 2023
  */
@@ -102,12 +102,63 @@ Customer* findMax(UTString type) {
 
 void processPurchase() {
     //TODO
+    /*
+
+ * This function should read the customer’s name, the item type and the quantity.
+ * The function should look up the customer in the customer database (creating a new customer record
+ * if this is a 1st-time customer) and increment the number of items purchased by this customer in their customer record.
+ *
+ * For example, if the customer record indicates that “Frank” had previously purchased
+ * 10 dice and the current command indicates that “Frank” is purchasing 20 dice, then the customer record
+ * should be set to indicate that 30 dice have been purchased by Frank. Note that each customer should
+ * have their own customer record (so that the innkeeper can keep track of who their best customers are and offer incentives like coupons and things).
+
+ */
+
+// Getting input
+    UTString name;
+    UTString item;
+    int quantity;
+    int i;
+
+    // Accessing the var
+    readString(&name); // Read customer variable name -> Craig
+    readString(&item); // Read item name
+    readNum(&quantity); // Read # of items -> quantity
+
 }
 
 void processSummarize() {
-    //TODO
+    /*
+ * Goal: Print out a summary.
+ * 1. display the number of Books, Dice, Figures, Towers remaining in inventory at the time of the Summarize command.
+ * 2. display how many different customers have come to the store for purchases.
+ * 3. the summary should report which customer purchased the most dice (and how many dice), who purchased the most books (and how many), who purchased the most figures (and how
+many), and who purchased the most towers (and how many towers). If a certain item has not been purchased by anybody, then the summary should indicate that. You are provided with three input
+files. At the end of each file (after the Quit command) is a transcript of what the output should be
+from the Summary command. Please format your output exactly as shown in the file.
+ */
 }
 
 void processInventory() {
     // TODO
+    // read the item type and quantity from the input file and update the store’s inventory of the indicated item type
+
+    // Getting input
+    UTString itemType;
+    int quantity;
+
+    // Accessing the var
+    readString(itemType); // Read item type
+    readNum(quantity); // Read # of items -> quantity
+
+    // Check the database
+    // Update the store's inventory based on item type and quantity
+    int* inventory = selectInventItem(itemType); // Return # of itemType -> inventory
+    if (inventory != 0) {
+        *inventory += quantity; // Update the quantity of itemType in the inventory
+    }
+
+    // Destroy the string I created
+    // -> Already taken care for me by UTString destructor
 }

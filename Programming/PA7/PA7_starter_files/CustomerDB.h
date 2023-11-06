@@ -13,7 +13,7 @@ private:
     int length; // number of valid customers actually in the array
 
 public:
-    CustomerDB(void);
+    CustomerDB(void); //
     ~CustomerDB(void);
     int size(void);
     Customer& operator[](int k); // we can access the customer database like an array
