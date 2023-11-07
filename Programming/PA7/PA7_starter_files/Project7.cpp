@@ -116,16 +116,36 @@ void processPurchase() {
  */
 
 // Getting input
-    UTString name;
-    UTString item;
+    UTString customerName;
+    UTString itemType;
     int quantity;
     int i;
 
     // Accessing the var
-    readString(&name); // Read customer variable name -> Craig
-    readString(&item); // Read item name
-    readNum(&quantity); // Read # of items -> quantity
+    readString(customerName); // Read customer variable name -> Craig
+    readString(itemType); // Read item name
+    readNum(quantity); // Read # of items -> quantity
 
+    // Is this a new customer?
+    Customer& customer = database[customerName];
+
+    //if buy quantity == 0, do nothing
+    if(quantity == 0){
+        return;
+    }
+
+    // Update the customer's record with the item purchase
+    int* itemInventory = selectInventItem(itemType, customer);
+    if(*selectInventItem(itemType) >= quantity){ // If there are more item in Inventory > asked to sell
+        *selectInventItem(itemType) -= *selectInventItem(itemType) - quantity; // Update the inventory
+        *selectInventItem(itemType, customer) += quantity; // Update the item of Cusomer
+    }
+    else{ // If Invent item < asked to sell => sorry msg
+        std::cout << "Sorry " << customerName.c_str() << ", we only have " << *selectInventItem(itemType) << " " << itemType.c_str() << std::endl;
+    }
+
+    // Destroy the string I created
+    // -> Already taken care for me by UTString destructor
 }
 
 void processSummarize() {

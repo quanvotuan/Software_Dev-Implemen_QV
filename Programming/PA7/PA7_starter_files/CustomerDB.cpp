@@ -59,14 +59,15 @@ Customer& CustomerDB::operator[](UTString name) { // not done, your effort goes 
      * If there is no Customer in the CustomerDB with that name, then your function must
 add the new Customer to the database and return a reference to the newly added Customer.
      */
-    for (int i = 0; i < length; i++) {
-        if (data[i].name == name) {
-            return data[i]; // Found: Wdym by reference?
+    if (isMember(name)) {
+        for (int i = 0; i < length; ++i) {
+            if(data[i].name == name) {
+                return data[i];
+            }
         }
     }
     // Not found case
-        // Check the size
-        // if len < cap -> Add | else double size
+        // Check the size if len < cap -> Add | else double size
     if (length < capacity){
         data[length] = Customer(name); // Create a new Customer @ the end
         length++;
@@ -95,8 +96,8 @@ bool CustomerDB::isMember(UTString name) {
      * Search through the current set of Customers and returns true
      * if it finds a Customer with the matching name, and returns false otherwise.
      */
-    for (int i = 0; i < CustomerDB::size(); i++) {
-        if(CustomerDB::data[i].name == name){
+    for (int i = 0; i < length; i++) {
+        if(data[i].name == name){
             return true; // Found
         }
         return false; // Not Found;
