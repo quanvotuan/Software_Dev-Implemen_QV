@@ -158,6 +158,50 @@ many), and who purchased the most towers (and how many towers). If a certain ite
 files. At the end of each file (after the Quit command) is a transcript of what the output should be
 from the Summary command. Please format your output exactly as shown in the file.
  */
+
+    // How to find max?
+
+    // Find max for each item & max_owners
+    UTString Books;
+    UTString Dice;
+    UTString Figures;
+    UTString Towers;
+
+    std::cout << "There are " << num_books << " Books " << num_dice << " Dice " << num_figures << " Figures and " << num_towers << " Towers in inventory" << std::endl;
+    std::cout << "we have had a total of " << database.size() << " different customers" << std::endl;
+
+    // Find who hold the max Books, Dice, Figures, and Towers
+    Customer* maxBooks = findMax(Books);
+    Customer* maxDice = findMax(Dice);
+    Customer* maxFigures = findMax(Figures);
+    Customer* maxTowers = findMax(Towers);
+
+    if(maxBooks != NULL){
+        std::cout << maxBooks->name.c_str() << " has purchased the most Books (" << maxBooks->books << ")" << std::endl;
+    }
+    else{
+        std::cout << "no one has purchased any Books"<< std::endl;
+    }
+
+    if(maxDice != NULL){
+        std::cout << maxDice->name.c_str() << " has purchased the most Books (" << maxDice->dice << ")" << std::endl;
+    }
+    else{
+        std::cout << "no one has purchased any Dice"<< std::endl;
+    }
+    if(maxFigures != NULL){
+        std::cout << maxFigures->name.c_str() << " has purchased the most Books (" << maxFigures->books << ")" << std::endl;
+    }
+    else{
+        std::cout << "no one has purchased any Figures"<< std::endl;
+    }
+    if(maxTowers != NULL){
+        std::cout << maxTowers->name.c_str() << " has purchased the most Books (" << maxTowers->books << ")" << std::endl;
+    }
+    else{
+        std::cout << "no one has purchased any Towers"<< std::endl;
+    }
+
 }
 
 void processInventory() {

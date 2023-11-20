@@ -1,0 +1,3 @@
+C:/QV_Local/ECE 312/My_Git_Repo/ECE-312/CppSeries/Test/cmake-build-debug/CMakeFiles/Test.dir
+C:/QV_Local/ECE 312/My_Git_Repo/ECE-312/CppSeries/Test/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/QV_Local/ECE 312/My_Git_Repo/ECE-312/CppSeries/Test/cmake-build-debug/CMakeFiles/rebuild_cache.dir

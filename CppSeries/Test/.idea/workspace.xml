@@ -1,0 +1,255 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="CMakePresetLoader"><![CDATA[{
+  "useNewFormat": true
+}]]></component>
+  <component name="CMakeReloadState">
+    <option name="reloaded" value="true" />
+  </component>
+  <component name="CMakeRunConfigurationManager">
+    <generated>
+      <config projectName="Test" targetName="Test" />
+    </generated>
+  </component>
+  <component name="CMakeSettings">
+    <configurations>
+      <configuration PROFILE_NAME="Debug" ENABLED="true" CONFIG_NAME="Debug" />
+    </configurations>
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="be41f712-815d-476c-9c24-c0a4356ee396" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/Test.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cmake-build-debug/.cmake/api/v1/query/cache-v2" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cmake-build-debug/.cmake/api/v1/query/cmakeFiles-v1" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cmake-build-debug/.cmake/api/v1/query/codemodel-v2" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cmake-build-debug/.cmake/api/v1/query/toolchains-v1" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cmake-build-debug/.cmake/api/v1/reply/cache-v2-90518a18ac0309629b17.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cmake-build-debug/.cmake/api/v1/reply/cmakeFiles-v1-30a34e2cd06010fee9c2.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cmake-build-debug/.cmake/api/v1/reply/codemodel-v2-24b2a248b3b569fec53c.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cmake-build-debug/.cmake/api/v1/reply/directory-.-Debug-d0094a50bb2071803777.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cmake-build-debug/.cmake/api/v1/reply/index-2023-11-07T01-48-35-0692.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cmake-build-debug/.cmake/api/v1/reply/target-Test-Debug-efe2e40966010b1573d5.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cmake-build-debug/.cmake/api/v1/reply/toolchains-v1-7798abb756c44aa07bb0.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeCache.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.26.4/CMakeCCompiler.cmake" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.26.4/CMakeCXXCompiler.cmake" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.26.4/CMakeDetermineCompilerABI_C.bin" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.26.4/CMakeDetermineCompilerABI_CXX.bin" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.26.4/CMakeRCCompiler.cmake" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.26.4/CMakeSystem.cmake" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.26.4/CompilerIdC/CMakeCCompilerId.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.26.4/CompilerIdC/a.exe" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.26.4/CompilerIdCXX/CMakeCXXCompilerId.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.26.4/CompilerIdCXX/a.exe" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/CMakeConfigureLog.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/TargetDirectories.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/clion-Debug-log.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/clion-environment.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/cmake.check_cache" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/rules.ninja" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cmake-build-debug/Testing/Temporary/LastTest.log" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cmake-build-debug/build.ninja" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cmake-build-debug/cmake_install.cmake" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/main.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../Programming/PA4/PA4_starter_files/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../Programming/PA6/PA6_starter_files/.idea/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../Programming/PA6/PA6_starter_files/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../Programming/PA7/.idea/PA7.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../Programming/PA7/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../Programming/PA7/PA7_starter_files/CMakeLists.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../Programming/PA7b/.idea/PA7b.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../Programming/PA7b/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../Programming/PA7b/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../Programming/PA7b/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../Programming/PA7b/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../Programming/PA7b/CMakeLists.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../Programming/PA7b/Customer.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../Programming/PA7b/CustomerDB.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../Programming/PA7b/CustomerDB.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../Programming/PA7b/Programming_Assignment_7.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../Programming/PA7b/Project7.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../Programming/PA7b/UTString.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../Programming/PA7b/cmake-build-debug/.cmake/api/v1/query/cache-v2" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../Programming/PA7b/cmake-build-debug/.cmake/api/v1/query/cmakeFiles-v1" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../Programming/PA7b/cmake-build-debug/.cmake/api/v1/query/codemodel-v2" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../Programming/PA7b/cmake-build-debug/.cmake/api/v1/query/toolchains-v1" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../Programming/PA7b/cmake-build-debug/.cmake/api/v1/reply/cache-v2-7d7aa769014f58b1f05f.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../Programming/PA7b/cmake-build-debug/.cmake/api/v1/reply/cmakeFiles-v1-a76e5a6faea3b2beb3f6.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../Programming/PA7b/cmake-build-debug/.cmake/api/v1/reply/codemodel-v2-7a3907c543ea651bce02.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../Programming/PA7b/cmake-build-debug/.cmake/api/v1/reply/directory-.-Debug-d0094a50bb2071803777.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../Programming/PA7b/cmake-build-debug/.cmake/api/v1/reply/index-2023-11-07T01-57-11-0170.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../Programming/PA7b/cmake-build-debug/.cmake/api/v1/reply/target-PA7b-Debug-dfa268b84e3b8fef9622.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../Programming/PA7b/cmake-build-debug/.cmake/api/v1/reply/toolchains-v1-7798abb756c44aa07bb0.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../Programming/PA7b/cmake-build-debug/.ninja_deps" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../Programming/PA7b/cmake-build-debug/.ninja_log" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../Programming/PA7b/cmake-build-debug/CMakeCache.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../Programming/PA7b/cmake-build-debug/CMakeFiles/3.26.4/CMakeCCompiler.cmake" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../Programming/PA7b/cmake-build-debug/CMakeFiles/3.26.4/CMakeCXXCompiler.cmake" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../Programming/PA7b/cmake-build-debug/CMakeFiles/3.26.4/CMakeDetermineCompilerABI_C.bin" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../Programming/PA7b/cmake-build-debug/CMakeFiles/3.26.4/CMakeDetermineCompilerABI_CXX.bin" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../Programming/PA7b/cmake-build-debug/CMakeFiles/3.26.4/CMakeRCCompiler.cmake" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../Programming/PA7b/cmake-build-debug/CMakeFiles/3.26.4/CMakeSystem.cmake" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../Programming/PA7b/cmake-build-debug/CMakeFiles/3.26.4/CompilerIdC/CMakeCCompilerId.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../Programming/PA7b/cmake-build-debug/CMakeFiles/3.26.4/CompilerIdC/a.exe" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../Programming/PA7b/cmake-build-debug/CMakeFiles/3.26.4/CompilerIdCXX/CMakeCXXCompilerId.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../Programming/PA7b/cmake-build-debug/CMakeFiles/3.26.4/CompilerIdCXX/a.exe" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../Programming/PA7b/cmake-build-debug/CMakeFiles/CMakeConfigureLog.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../Programming/PA7b/cmake-build-debug/CMakeFiles/PA7b.dir/CustomerDB.cpp.obj" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../Programming/PA7b/cmake-build-debug/CMakeFiles/PA7b.dir/Project7.cpp.obj" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../Programming/PA7b/cmake-build-debug/CMakeFiles/PA7b.dir/main.cpp.obj" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../Programming/PA7b/cmake-build-debug/CMakeFiles/TargetDirectories.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../Programming/PA7b/cmake-build-debug/CMakeFiles/clion-Debug-log.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../Programming/PA7b/cmake-build-debug/CMakeFiles/clion-environment.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../Programming/PA7b/cmake-build-debug/CMakeFiles/cmake.check_cache" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../Programming/PA7b/cmake-build-debug/CMakeFiles/rules.ninja" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../Programming/PA7b/cmake-build-debug/PA7b.exe" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../Programming/PA7b/cmake-build-debug/Testing/Temporary/LastTest.log" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../Programming/PA7b/cmake-build-debug/build.ninja" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../Programming/PA7b/cmake-build-debug/cmake_install.cmake" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../Programming/PA7b/cmake-build-debug/test1.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../Programming/PA7b/cmake-build-debug/test2.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../Programming/PA7b/cmake-build-debug/test3.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../Programming/PA7b/main.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../Programming/PA7c/.idea/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../Programming/PA7c/.idea/PA7c.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../Programming/PA7c/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../Programming/PA7c/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../Programming/PA7c/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../Programming/PA7c/CMakeLists.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../Programming/PA7c/Customer.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../Programming/PA7c/CustomerDB.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../Programming/PA7c/CustomerDB.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../Programming/PA7c/Project7.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../Programming/PA7c/UTString.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../Programming/PA7c/cmake-build-debug/.cmake/api/v1/query/cache-v2" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../Programming/PA7c/cmake-build-debug/.cmake/api/v1/query/cmakeFiles-v1" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../Programming/PA7c/cmake-build-debug/.cmake/api/v1/query/codemodel-v2" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../Programming/PA7c/cmake-build-debug/.cmake/api/v1/query/toolchains-v1" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../Programming/PA7c/cmake-build-debug/.cmake/api/v1/reply/cache-v2-275369cefb3581075748.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../Programming/PA7c/cmake-build-debug/.cmake/api/v1/reply/cmakeFiles-v1-377ac9c915a4d5be4592.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../Programming/PA7c/cmake-build-debug/.cmake/api/v1/reply/codemodel-v2-462c3a4b8f0cf37b7b60.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../Programming/PA7c/cmake-build-debug/.cmake/api/v1/reply/directory-.-Debug-d0094a50bb2071803777.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../Programming/PA7c/cmake-build-debug/.cmake/api/v1/reply/index-2023-11-07T02-00-03-0298.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../Programming/PA7c/cmake-build-debug/.cmake/api/v1/reply/target-PA7c-Debug-64d2fb095d9e30f5ff71.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../Programming/PA7c/cmake-build-debug/.cmake/api/v1/reply/toolchains-v1-7798abb756c44aa07bb0.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../Programming/PA7c/cmake-build-debug/.ninja_deps" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../Programming/PA7c/cmake-build-debug/.ninja_log" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../Programming/PA7c/cmake-build-debug/CMakeCache.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../Programming/PA7c/cmake-build-debug/CMakeFiles/3.26.4/CMakeCCompiler.cmake" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../Programming/PA7c/cmake-build-debug/CMakeFiles/3.26.4/CMakeCXXCompiler.cmake" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../Programming/PA7c/cmake-build-debug/CMakeFiles/3.26.4/CMakeDetermineCompilerABI_C.bin" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../Programming/PA7c/cmake-build-debug/CMakeFiles/3.26.4/CMakeDetermineCompilerABI_CXX.bin" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../Programming/PA7c/cmake-build-debug/CMakeFiles/3.26.4/CMakeRCCompiler.cmake" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../Programming/PA7c/cmake-build-debug/CMakeFiles/3.26.4/CMakeSystem.cmake" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../Programming/PA7c/cmake-build-debug/CMakeFiles/3.26.4/CompilerIdC/CMakeCCompilerId.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../Programming/PA7c/cmake-build-debug/CMakeFiles/3.26.4/CompilerIdC/a.exe" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../Programming/PA7c/cmake-build-debug/CMakeFiles/3.26.4/CompilerIdCXX/CMakeCXXCompilerId.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../Programming/PA7c/cmake-build-debug/CMakeFiles/3.26.4/CompilerIdCXX/a.exe" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../Programming/PA7c/cmake-build-debug/CMakeFiles/CMakeConfigureLog.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../Programming/PA7c/cmake-build-debug/CMakeFiles/PA7c.dir/CustomerDB.cpp.obj" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../Programming/PA7c/cmake-build-debug/CMakeFiles/PA7c.dir/Project7.cpp.obj" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../Programming/PA7c/cmake-build-debug/CMakeFiles/PA7c.dir/main.cpp.obj" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../Programming/PA7c/cmake-build-debug/CMakeFiles/TargetDirectories.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../Programming/PA7c/cmake-build-debug/CMakeFiles/clion-Debug-log.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../Programming/PA7c/cmake-build-debug/CMakeFiles/clion-environment.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../Programming/PA7c/cmake-build-debug/CMakeFiles/cmake.check_cache" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../Programming/PA7c/cmake-build-debug/CMakeFiles/rules.ninja" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../Programming/PA7c/cmake-build-debug/Testing/Temporary/LastTest.log" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../Programming/PA7c/cmake-build-debug/build.ninja" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../Programming/PA7c/cmake-build-debug/cmake_install.cmake" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../Programming/PA7c/cmake-build-debug/test1.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../Programming/PA7c/cmake-build-debug/test2.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../Programming/PA7c/cmake-build-debug/test3.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../Programming/PA7c/main.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Programming/PA4/PA4_starter_files/cmake-build-debug/.cmake/api/v1/reply/cache-v2-adac80579de66910e720.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Programming/PA4/PA4_starter_files/cmake-build-debug/.cmake/api/v1/reply/index-2023-09-29T01-35-27-0444.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Programming/PA4/PA4_starter_files/cmake-build-debug/.ninja_deps" beforeDir="false" afterPath="$PROJECT_DIR$/../../Programming/PA4/PA4_starter_files/cmake-build-debug/.ninja_deps" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Programming/PA4/PA4_starter_files/cmake-build-debug/.ninja_log" beforeDir="false" afterPath="$PROJECT_DIR$/../../Programming/PA4/PA4_starter_files/cmake-build-debug/.ninja_log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Programming/PA4/PA4_starter_files/cmake-build-debug/CMakeCache.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../../Programming/PA4/PA4_starter_files/cmake-build-debug/CMakeCache.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Programming/PA4/PA4_starter_files/cmake-build-debug/CMakeFiles/PA4_starter_files.dir/Project4.cpp.obj" beforeDir="false" afterPath="$PROJECT_DIR$/../../Programming/PA4/PA4_starter_files/cmake-build-debug/CMakeFiles/PA4_starter_files.dir/Project4.cpp.obj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Programming/PA4/PA4_starter_files/cmake-build-debug/CMakeFiles/PA4_starter_files.dir/main.cpp.obj" beforeDir="false" afterPath="$PROJECT_DIR$/../../Programming/PA4/PA4_starter_files/cmake-build-debug/CMakeFiles/PA4_starter_files.dir/main.cpp.obj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Programming/PA4/PA4_starter_files/cmake-build-debug/CMakeFiles/clion-Debug-log.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../../Programming/PA4/PA4_starter_files/cmake-build-debug/CMakeFiles/clion-Debug-log.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Programming/PA4/PA4_starter_files/cmake-build-debug/CMakeFiles/clion-environment.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../../Programming/PA4/PA4_starter_files/cmake-build-debug/CMakeFiles/clion-environment.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Programming/PA4/PA4_starter_files/cmake-build-debug/CMakeFiles/rules.ninja" beforeDir="false" afterPath="$PROJECT_DIR$/../../Programming/PA4/PA4_starter_files/cmake-build-debug/CMakeFiles/rules.ninja" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Programming/PA4/PA4_starter_files/cmake-build-debug/PA4_starter_files.exe" beforeDir="false" afterPath="$PROJECT_DIR$/../../Programming/PA4/PA4_starter_files/cmake-build-debug/PA4_starter_files.exe" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Programming/PA4/PA4_starter_files/cmake-build-debug/Testing/Temporary/LastTest.log" beforeDir="false" afterPath="$PROJECT_DIR$/../../Programming/PA4/PA4_starter_files/cmake-build-debug/Testing/Temporary/LastTest.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Programming/PA7/PA7_starter_files/Project7.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/../../Programming/PA7/PA7_starter_files/Project7.cpp" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ClangdSettings">
+    <option name="formatViaClangd" value="false" />
+  </component>
+  <component name="ExecutionTargetManager" SELECTED_TARGET="CMakeBuildProfile:Debug" />
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
+  </component>
+  <component name="ProjectApplicationVersion">
+    <option name="ide" value="CLion" />
+    <option name="majorVersion" value="2023" />
+    <option name="minorVersion" value="2.2" />
+  </component>
+  <component name="ProjectColorInfo"><![CDATA[{
+  "associatedIndex": 7
+}]]></component>
+  <component name="ProjectId" id="2XpMkQSoNgDNR5NfQMLRCNHw9Uo" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.cidr.known.project.marker": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "cf.first.check.clang-format": "false",
+    "cidr.known.project.marker": "true",
+    "git-widget-placeholder": "main",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "settings.editor.selected.configurable": "CPPToolchains",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="RunManager">
+    <configuration default="true" type="CLionExternalRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true">
+      <method v="2">
+        <option name="CLION.EXTERNAL.BUILD" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Test" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="Test" TARGET_NAME="Test" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="Test" RUN_TARGET_NAME="Test">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="be41f712-815d-476c-9c24-c0a4356ee396" name="Changes" comment="" />
+      <created>1699321710468</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1699321710468</updated>
+      <workItem from="1699321712049" duration="605000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+</project>
