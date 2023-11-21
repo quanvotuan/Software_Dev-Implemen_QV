@@ -1,3 +1,4 @@
+#include <bitset>
 #include "MyMemoryController.hpp"
 
 /*
@@ -65,6 +66,8 @@ void BaseMemoryController::write(uint32_t address, vector<int8_t> data)
     }
 }
 
+
+
 /*
  * TODO: Implement this method
  *
@@ -80,10 +83,46 @@ uint32_t BaseMemoryController::malloc(size_t size)
     /*
      * If there are no blocks of memory greater than or equal to the
 requested size, return 0 (even if the sum of the sizes of the free memory blocks is greater)
-     * You will still need the metadata to hold the true value, but the
-size itself may be different, similar to the 37-byte block
      */
-    return 0;
+
+
+
+    // Read the content of the base_address
+    uint32_t curr_address = base_address;
+    uint32_t user_ptr = 0;
+    size_t total_byte = heap->get_total_bytes();
+    uint32_t buffer = divisibleby4(size);
+
+    /*
+    * If there are no blocks of memory greater than or equal to the requested size,
+    * return 0 (even if the sum of the sizes of the free memory blocks is greater).
+    */
+    if(curr_address >= (base_address+total_byte) || size == 0){ // If curr_address reach the end or size = 0 -> return 0;
+        return 0;
+    }
+
+    // Check for allocation
+    while (true) {
+        int32_t free_spaces = this->read_full_word(curr_address);
+        if ((free_spaces - (int)size) >= 0) { // If there are space -> Allocated space
+            int32_t new_free_spaces = free_spaces - buffer - 8; // Update free_spaces
+            this->write(curr_address, word_to_bytes(-size)); // Write to the headers -> -size
+            this->write(curr_address + (buffer + 4), word_to_bytes(-size)); // Write to the footer -> -size
+
+            // Update the total free spaces
+            this->write(curr_address + (buffer + 8), word_to_bytes(new_free_spaces)); // Write to the header -> nfs
+            this->write(curr_address + (buffer + 12 + new_free_spaces),word_to_bytes(new_free_spaces)); // Write to the footer -> nfs
+            user_ptr = curr_address + 4;
+
+
+            return user_ptr;
+        }
+
+        else { // else jump to next header
+            uint32_t next_header = curr_address + divisibleby4(abs(free_spaces)) + 8;
+            curr_address = next_header;
+        }
+    }
 }
 
 /*

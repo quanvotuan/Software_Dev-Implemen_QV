@@ -36,6 +36,8 @@ class BaseMemoryController
         // These are helper methods that you should implement and use
         vector<int8_t> word_to_bytes(uint32_t word);
         int32_t read_full_word(uint32_t address);
+        uint32_t divisibleby4(uint32_t n);
+
 
         // These virtual methods must be implemented in the derived classes
         virtual vector<int8_t> read(uint32_t address, size_t size);

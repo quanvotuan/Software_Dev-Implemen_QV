@@ -1,3 +1,4 @@
+#include <bitset>
 #include "BaseMemoryController.hpp"
 
 /*
@@ -67,21 +68,20 @@ vector<int8_t> BaseMemoryController::word_to_bytes(uint32_t word)
     uint32_t mask3 = 0x00FF0000;
     uint32_t mask4 = 0xFF000000;
 
-
     uint32_t first_bytes = word & mask1; // 1. Mask out the bytes
     uint8_t shift_first_bytes = first_bytes;
     wtb_vect.push_back(shift_first_bytes); // 2. Vector push back
 
     uint32_t seconds_bytes = word & mask2; // 1. Mask out the bytes
-    uint8_t shift_seconds_bytes =  seconds_bytes >> 2;
+    uint8_t shift_seconds_bytes =  seconds_bytes >> 8;
     wtb_vect.push_back(shift_seconds_bytes); // 2. Vector push back
 
     uint32_t third_bytes = word & mask3; // 1. Mask out the bytes
-    uint8_t shift_third_bytes =  third_bytes >> 4;
+    uint8_t shift_third_bytes =  third_bytes >> 16;
     wtb_vect.push_back(shift_third_bytes); // 2. Vector push back
 
     uint32_t fourth_bytes = word & mask4; // 1. Mask out the bytes
-    uint8_t shift_fourth_bytes =  fourth_bytes >> 6;
+    uint8_t shift_fourth_bytes =  fourth_bytes >> 24;
     wtb_vect.push_back(shift_fourth_bytes); // 2. Vector push back
 
     return wtb_vect;
@@ -98,6 +98,7 @@ vector<int8_t> BaseMemoryController::word_to_bytes(uint32_t word)
 int32_t BaseMemoryController::read_full_word(uint32_t address)
 {
     // Same logic, but reverse
+    // Remember: Shift bits not bytes
 
     uint8_t shift_single_byte;
     uint32_t  words = 0;
@@ -109,9 +110,19 @@ int32_t BaseMemoryController::read_full_word(uint32_t address)
             words += single_byte;
         }
         else if(i > 0){
-            shift_single_byte = single_byte << i;
+            shift_single_byte = single_byte << (8 * i);
             words += shift_single_byte;
         }
     }
     return words; // Return the words
+}
+
+
+// Round the nearest number divisible by 4
+uint32_t BaseMemoryController::divisibleby4(uint32_t n){
+    uint32_t i = n;
+    while((i%4) != 0){
+        i++;
+    }
+    return i;
 }
