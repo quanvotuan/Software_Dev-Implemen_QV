@@ -168,10 +168,6 @@ void BaseMemoryController::free(uint32_t ptr)
     uint32_t curr_header = ptr-4; // go to the header
     int32_t curr_spaces = this->read_full_word(curr_header); // Read the curr_spaces
     uint32_t curr_buffer = divisibleby4(-curr_spaces); // Negate to get the buffer
-    std::cout << curr_header << std::endl;
-    std::cout << curr_spaces << std::endl;
-    std::cout << curr_buffer << std::endl;
-
     uint32_t curr_footer = curr_header + curr_buffer + 4;
 
     this->write(curr_header, word_to_bytes(curr_buffer)); // Write to the headers -> negative curr_spaces
@@ -186,10 +182,9 @@ void BaseMemoryController::free(uint32_t ptr)
             uint32_t next_buffer = divisibleby4(next_spaces); // Get the buffer
             uint32_t next_footer = (next_header + next_buffer + 4);
             uint32_t merge_buffer = (curr_buffer + next_buffer + 8);
-            this->write(curr_header, word_to_bytes(merge_buffer)); // Write to the curr_headers -> merge_buffer
-            this->write(next_footer, word_to_bytes(merge_buffer)); // Write to the next_footer -> merge_buffer
-            curr_buffer = merge_buffer; //
-            curr_footer = next_footer;
+            this->merge(curr_header, next_footer, merge_buffer);
+            curr_buffer = merge_buffer; // Update curr_buffer
+            curr_footer = next_footer; // Update curr_header
         }
     }
     // Can I go up?
@@ -201,8 +196,7 @@ void BaseMemoryController::free(uint32_t ptr)
             uint32_t pre_buffer = divisibleby4(pre_spaces); // Negate to get the buffer
             uint32_t pre_header = (pre_footer - pre_buffer - 4); // Found the pre_header
             uint32_t merge_buffer = (curr_buffer + pre_buffer + 8);
-            this->write(pre_header, word_to_bytes(merge_buffer)); // Write merge_buffer -> pre_header
-            this->write(curr_footer, word_to_bytes(merge_buffer)); // Write merge_buffer -> curr_footer
+            this->merge(pre_header, curr_footer, merge_buffer);
             curr_buffer = merge_buffer; // Update curr_buffer
             curr_header = pre_header; // Update curr_header
         }
@@ -213,8 +207,8 @@ void BaseMemoryController::free(uint32_t ptr)
  * TODO: Implement this method
  *
  * Reallocates a block of memory of the given size at the given pointer. Returns 0 if the allocation fails.
- * If the pointer is 0, this method should behave like malloc.
- * If the size is 0, this method should behave like free (and return 0).
+ * (Done) If the pointer is 0, this method should behave like malloc.
+ * (Done) If the size is 0, this method should behave like free (and return 0).
  * If there is enough space to expand the block at the given pointer, you must do so.
  * Remember to copy the data from the old block of memory to the new block of memory if the pointer changes.
  * Remember the returned pointer is the first address the user can write to,
@@ -226,12 +220,87 @@ void BaseMemoryController::free(uint32_t ptr)
 */
 uint32_t BaseMemoryController::realloc(uint32_t ptr, size_t new_size)
 {
+    uint32_t curr_address = base_address;
+    size_t total_byte = heap->get_total_bytes();
+    uint32_t bot_bound = base_address + total_byte;
+
+    assert(ptr < bot_bound && ptr >= base_address);
+
     if (ptr == 0) {
-        this->malloc(new_size); // Behave like malloc
+        uint32_t user_ptr = this->malloc(new_size); // Behave like malloc
+        return user_ptr;
     }
 
     if (new_size == 0){
         this->free(ptr); // Behave like free
+        return 0;
     }
 
+    // Find the original size
+    uint32_t curr_header = ptr-4; // go to the header
+    int32_t curr_spaces = this->read_full_word(curr_header); // Get the curr_spaces
+    uint32_t curr_buffer = divisibleby4(-curr_spaces); // Negate curr_spaces to get the buffer = size
+    uint32_t curr_footer = curr_header + curr_buffer + 4;
+
+    // Shrinking: Note: curr_head -> shrunk_buffer -> shrunk footer | free_head -> new_space -> curr_footer
+    if(new_size < curr_buffer){
+        uint32_t shrunk_buffer = divisibleby4(new_size);
+        uint32_t shrunk_footer = (curr_header + 4 + shrunk_buffer); // Create a new_curr_footer
+        this->write(curr_header, word_to_bytes(-new_size)); // Shrinking
+        this->write(shrunk_footer, word_to_bytes(-new_size)); // Shrinking
+
+        uint32_t free_header = shrunk_footer + 4;
+        uint32_t new_spaces = curr_footer - (free_header+4); // Compute the new free block
+        this->write(free_header, word_to_bytes(-new_spaces));
+        this->write(curr_footer, word_to_bytes(-new_spaces));
+
+        free(free_header + 4); // Free the data, not the header
+        return ptr;
+    }
+
+    // If the new size is larger than the original size and there is enough space below the given block, you
+    // should expand the block and keep the same pointer.
+        // Expand then shrink
+    if(new_size > curr_buffer){ // Expand
+        uint32_t next_header = curr_header + curr_buffer + 8; // Go to next block header
+        int32_t next_spaces = this->read_full_word(next_header); // Read the next_head data
+        if(next_header < bot_bound){ // Can I go down?
+            if(next_spaces > 0){ // Are there free space?
+                uint32_t next_buffer = divisibleby4(next_spaces); // Get the buffer w/ negate space
+                uint32_t next_footer = (next_header + next_buffer + 4);
+                uint32_t merge_buffer = (curr_buffer + next_buffer + 8);
+                if(merge_buffer > new_size){ // Is there enough space
+                    this->merge(curr_header, next_footer, merge_buffer);
+                    curr_buffer = merge_buffer; // Update curr_buffer
+                    curr_footer = next_footer; // Update curr_header
+                }
+                ptr = this->realloc(ptr, new_size); // Shrink
+                return ptr;
+            }
+        }
+        // If the new size is larger than the original size but there is not enough space to expand the given block,
+        //you should malloc a new block, copy the data over, free the old block, and return the new pointer.
+        else{
+            uint32_t user_ptr = this->malloc(new_size); // malloc a new free blk
+
+            // If there is no block in the heap large enough to realloc, free the original block and return 0
+            if(user_ptr == 0){
+                free(ptr); // Free the original blk
+                return 0;
+            }
+
+            uint32_t new_block_header = user_ptr-4; // Copy the data over
+            int32_t new_block_spaces = this->read_full_word(new_block_header); // Get the curr_spaces
+            uint32_t new_block_buffer = divisibleby4(-new_block_spaces); // Negate new_block_spaces to get the buffer = size
+            uint32_t new_block_footer = new_block_header + new_block_buffer + 4;
+            for (int i = 0; i < new_block_footer; i++) { // copy the data over
+                int32_t temp = read_full_word(ptr + i);
+                this->write(user_ptr + i, word_to_bytes(temp));
+            }
+
+            free(ptr); // free the old block
+            return user_ptr;
+
+        }
+    }
 }
