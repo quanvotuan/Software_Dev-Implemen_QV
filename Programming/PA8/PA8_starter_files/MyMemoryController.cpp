@@ -90,7 +90,11 @@ requested size, return 0 (even if the sum of the sizes of the free memory blocks
     uint32_t curr_address = base_address;
     uint32_t user_ptr = 0;
     size_t total_byte = heap->get_total_bytes();
-    uint32_t buffer = divisibleby4(size);
+    uint32_t buffer = abs((int)size);
+    while((buffer%4) != 0){
+        buffer++;
+    }
+
 
     /*
     * If there are no blocks of memory greater than or equal to the requested size,
@@ -123,7 +127,11 @@ requested size, return 0 (even if the sum of the sizes of the free memory blocks
         }
 
         else { // else jump to next header
-            uint32_t next_header = curr_address + divisibleby4(abs(free_spaces)) + 8;
+            uint32_t curr_buffer = abs(free_spaces);
+            while((curr_buffer%4) != 0){
+                curr_buffer++;
+            }
+            uint32_t next_header = curr_address + curr_buffer + 8;
             curr_address = next_header;
         }
     }
@@ -173,7 +181,10 @@ void BaseMemoryController::free(uint32_t ptr)
     // Free
     uint32_t curr_header = ptr-4; // go to the header
     int32_t curr_spaces = this->read_full_word(curr_header); // Read the curr_spaces
-    uint32_t curr_buffer = divisibleby4(-curr_spaces); // Negate to get the buffer
+    uint32_t curr_buffer = abs(curr_spaces);
+    while((curr_buffer%4) != 0){
+        curr_buffer++;
+    }
     uint32_t curr_footer = curr_header + curr_buffer + 4;
 
     this->write(curr_header, word_to_bytes(curr_buffer)); // Write to the headers -> negative curr_spaces
@@ -185,10 +196,17 @@ void BaseMemoryController::free(uint32_t ptr)
     if(next_header < bot_bound){ // Find the next header
         int32_t next_spaces = this->read_full_word(next_header); // Read the next_head data
         if(next_spaces >= 0){ // if so merge
-            uint32_t next_buffer = divisibleby4(abs(next_spaces)); // Get the buffer
+
+            uint32_t next_buffer = abs(next_spaces); // Get the buffer
+            while((next_buffer%4) != 0){
+                next_buffer++;
+            }
+
             uint32_t next_footer = (next_header + next_buffer + 4);
             uint32_t merge_buffer = (curr_buffer + next_buffer + 8);
-            this->merge(curr_header, next_footer, merge_buffer);
+
+            this->write(curr_header, word_to_bytes(merge_buffer));
+            this->write(next_footer, word_to_bytes(merge_buffer));
             curr_buffer = merge_buffer; // Update curr_buffer
             curr_footer = next_footer; // Update curr_header
         }
@@ -199,10 +217,14 @@ void BaseMemoryController::free(uint32_t ptr)
         int32_t pre_spaces = this->read_full_word(pre_footer); // Read the header data
 
         if(pre_spaces >= 0){
-            uint32_t pre_buffer = divisibleby4(abs(pre_spaces)); // Negate to get the buffer
+            uint32_t pre_buffer = abs(pre_spaces);
+            while((pre_buffer%4) != 0){
+                pre_buffer++;
+            }
             uint32_t pre_header = (pre_footer - pre_buffer - 4); // Found the pre_header
             uint32_t merge_buffer = (curr_buffer + pre_buffer + 8);
-            this->merge(pre_header, curr_footer, merge_buffer);
+            this->write(pre_header, word_to_bytes(merge_buffer));
+            this->write(curr_footer, word_to_bytes(merge_buffer));
             curr_buffer = merge_buffer; // Update curr_buffer
             curr_header = pre_header; // Update curr_header
         }
@@ -245,23 +267,34 @@ uint32_t BaseMemoryController::realloc(uint32_t ptr, size_t new_size)
     // Find the original size
     uint32_t curr_header = ptr-4; // go to the header
     int32_t curr_spaces = this->read_full_word(curr_header); // Get the curr_spaces
-    uint32_t curr_buffer = divisibleby4(-curr_spaces); // Negate curr_spaces to get the buffer = size
+    uint32_t curr_buffer = abs(curr_spaces); // Negate curr_spaces to get the buffer = size
+        while((curr_buffer%4) != 0){
+            curr_buffer++;
+        }
     uint32_t curr_footer = curr_header + curr_buffer + 4;
+
+
+    // How to determine enough space?
+
+    //
 
     // Shrinking: Note: curr_head -> shrunk_buffer -> shrunk footer | free_head -> new_space -> curr_footer
     if(new_size <= curr_buffer){
-        uint32_t shrunk_buffer = divisibleby4(new_size);
+        uint32_t shrunk_buffer = abs((int)new_size);
+        while((shrunk_buffer%4) != 0){
+            shrunk_buffer++;
+        }
         uint32_t shrunk_footer = (curr_header + 4 + shrunk_buffer); // Create a new_curr_footer
         this->write(curr_header, word_to_bytes(-new_size)); // Shrinking
         this->write(shrunk_footer, word_to_bytes(-new_size)); // Shrinking
 
         uint32_t free_header = shrunk_footer + 4;
         int32_t new_buffer = curr_footer - (free_header+4); // Compute the new free block
-        if(new_buffer == -8){ // If the buffer left after shrink is only 8 bytes -> write 0 to each
+        if(new_buffer == -8){
             // Do nothing
             std::cout << "Nothing I can do" << std::endl;
         }
-        else if(new_buffer == -4){
+        else if(new_buffer == -4){ // If the buffer left after shrink is only 4 bytes -> write 0 to each
             this->write(free_header, word_to_bytes(0));
             std::cout << "Don't have enough space to reallocate, sorry :))" << std::endl;
         }
@@ -279,15 +312,19 @@ uint32_t BaseMemoryController::realloc(uint32_t ptr, size_t new_size)
         int32_t next_spaces = this->read_full_word(next_header); // Read the next_head data
         if(next_header < bot_bound){ // Can I go down?
             if(next_spaces >= 0){ // Are there free space?
-                uint32_t next_buffer = divisibleby4(abs(next_spaces)); // Get the buffer w/ negate space
+                uint32_t next_buffer = abs(next_spaces); // Get the buffer w/ negate space
+                    while((next_buffer%4) != 0){
+                        next_buffer++;
+                    }
                 uint32_t next_footer = (next_header + next_buffer + 4);
                 uint32_t merge_buffer = (curr_buffer + next_buffer + 8);
                 if(merge_buffer > new_size){ // Is there enough space
-                    this->merge(curr_header, next_footer, -merge_buffer);
+                    this->write(curr_header, word_to_bytes(-merge_buffer));
+                    this->write(next_footer, word_to_bytes(-merge_buffer));
                     curr_buffer = merge_buffer; // Update curr_buffer
                     curr_footer = next_footer; // Update curr_header
                 }
-                this->print_heap(0x2000, 0x2040);
+                // this->print_heap(0x2000, 0x2040);
                 ptr = this->realloc(ptr, new_size); // Shrink
                 return ptr;
             }
@@ -304,7 +341,10 @@ uint32_t BaseMemoryController::realloc(uint32_t ptr, size_t new_size)
 
                 uint32_t new_block_header = user_ptr-4; // Copy the data over
                 int32_t new_block_spaces = this->read_full_word(new_block_header); // Get the curr_spaces
-                uint32_t new_block_buffer = divisibleby4(abs(new_block_spaces)); // Negate new_block_spaces to get the buffer = size
+                uint32_t new_block_buffer = abs(new_block_spaces); // Negate new_block_spaces to get the buffer = size
+                    while((new_block_buffer%4) != 0){
+                        new_block_buffer++;
+                    }
                 uint32_t new_block_footer = new_block_header + new_block_buffer + 4;
                 for (int i = 0; i < new_block_buffer; i++) { // copy the data (size = buffer) over
                     int32_t temp = read_full_word(ptr + i);
