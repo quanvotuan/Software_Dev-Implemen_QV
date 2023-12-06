@@ -119,7 +119,8 @@ int main()
  *      Describe the behavior (function) of a class
  *
  *  3. Encapsulation:
- *      What? -> The attribute suppose to be private instead of public
+ *      What?
+ *      -> The attribute suppose to be private instead of public
  *      In order to access these attribute, I'm need to write the method
  *      to get them myself
  *

@@ -49,8 +49,8 @@
 	"kind" : "codemodel",
 	"paths" : 
 	{
-		"build" : "C:/QV_Local/ECE 312/Lecture_Code/Final/Reviews/Classes/cmake-build-debug",
-		"source" : "C:/QV_Local/ECE 312/Lecture_Code/Final/Reviews/Classes"
+		"build" : "C:/Quan Vo Local/Local Dev/Git_Repo/ECE-312/Programming/Reviews/Classes/cmake-build-debug",
+		"source" : "C:/Quan Vo Local/Local Dev/Git_Repo/ECE-312/Programming/Reviews/Classes"
 	},
 	"version" : 
 	{
