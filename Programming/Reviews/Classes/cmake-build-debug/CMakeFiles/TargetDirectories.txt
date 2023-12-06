@@ -1,0 +1,3 @@
+C:/QV_Local/ECE 312/Lecture_Code/Final/Reviews/Classes/cmake-build-debug/CMakeFiles/Classes.dir
+C:/QV_Local/ECE 312/Lecture_Code/Final/Reviews/Classes/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/QV_Local/ECE 312/Lecture_Code/Final/Reviews/Classes/cmake-build-debug/CMakeFiles/rebuild_cache.dir
