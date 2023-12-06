@@ -13,4 +13,4 @@ add_executable(PA8_test
         PA8_starter_files/main.cpp
         PA8_starter_files/MyMemoryController.cpp
         PA8_starter_files/MyMemoryController.hpp
-        PA8_starter_files/test_case.cpp)
+        PA8_starter_files/Lab8_test_case_QV.cpp)
